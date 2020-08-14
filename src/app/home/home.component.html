@@ -1,0 +1,238 @@
+<div class="grid-container">
+  <h1 class="mat-h1">สภาพอากาศ</h1>
+  <!-- AQI Index card -->
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold" (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
+            <mat-button-toggle value="italic" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
+            <mat-button-toggle value="underline" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
+          </mat-button-toggle-group>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>
+            <h2>คุณภาพอากาศวันนี้</h2>
+          </div>
+          <div>
+            <h2>{{currentAQI}}</h2>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <div>
+            <h2>{{currentLevel}}</h2>
+          </div>
+          <div>
+            <h4>{{currentDescribtion}}</h4>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+    <!-- Health recommendation card -->
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <div>
+              <h3>คำแนะนำด้านสุขภาพ</h3>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <ul>
+            <li *ngFor="let rec of healthRecommends"><span>{{rec}}</span></li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions><a mat-raised-button href="{{moreDetailLink}}" target="_blank">อ่านเพิ่มเติม</a>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!-- AQI Forecast card -->
+  <mat-grid-list cols="7" rowHeight="450px">
+    <mat-grid-tile [colspan]="7" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>พยากรณ์คุณภาพอากาศ</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="7" rowHeight="120px">
+            <mat-grid-tile *ngFor="let tile of tiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows">
+              <h2>{{tile.day}}</h2> <br> <h2>{{tile.month}}</h2>
+            </mat-grid-tile>
+          </mat-grid-list> 
+        <!-- </mat-card-content>
+        <mat-card-content class="dashboard-card-content"> -->
+          <mat-grid-list cols="7" rowHeight="120px">
+            <mat-grid-tile *ngFor="let tile of tiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows"
+              [style.background]="tile.color">
+              <span>{{tile.value}}</span>
+            </mat-grid-tile>
+          </mat-grid-list> 
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!-- Weahter card -->
+  <mat-grid-list cols="4" rowHeight="450">
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>สภาพอากาศ</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="4" rowHeight="150px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">1</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  ความชื้น<br>
+                  10.5<br>
+                  เปอร์เซ็น (%)
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  ปริมาณน้ำฝน<br>
+                  0<br>
+                  มิลลิเมตร (mm)
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  ความกดอากาศ<br>
+                  978.4<br>
+                  มิลลิบาร์ (mb)
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="4" rowHeight="150px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  อุณหภูมิ<br>
+                  35<br>
+                  องศาเซลเซียส (C)
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  โอกาสที่ฝนจะตก<br>
+                  น้อยมาก<br>
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!-- Weahter Forecast card -->
+  <mat-grid-list cols="7" rowHeight="450px">
+    <mat-grid-tile [colspan]="7" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>พยากรณ์อากาศ</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="7" rowHeight="150px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">1</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">2</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">3</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">4</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">5</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">6</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">7</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="7" rowHeight="150px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">1</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">2</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">3</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">4</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">5</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">6</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">7</mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
