@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export interface Tile {
   color: string;
@@ -24,20 +24,20 @@ export class DashboardComponent {
   currentLevel = ''
   currentDescribtion = ''
 
-  healthRecommends:any = []
+  healthRecommends: any = []
   moreDetailLink = 'https://www.google.com/'
-  
+
   tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 2, color: 'lightblue'},
-    {text: 'Two', cols: 3, rows: 1, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+    { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
+    { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
+    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
 
   constructor(private breakpointObserver: BreakpointObserver) {
     this.currentAQI = 300
-    switch(this.currentAQI) {
-      case 15 : {
+    switch (this.currentAQI) {
+      case 15: {
         this.currentLevel = 'แดง'
         this.currentDescribtion = 'คุณภาพของอากาศส่งผลต่อสุขภาพ'
         break
@@ -50,7 +50,7 @@ export class DashboardComponent {
     this.healthRecommends[3] = 'หากมีเหตุการปกติ ให้พบแพทย์โดยด่วน'
   }
 
-  OnClickSource(sorceName:any){
+  OnClickSource(sorceName: any) {
     console.log(sorceName)
   }
 }
