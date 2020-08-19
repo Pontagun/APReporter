@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 
 import { MatSliderModule } from '@angular/material/slider';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,18 +15,27 @@ import { LayoutModule } from '@angular/cdk/layout'
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { AgmCoreModule } from '@agm/core';
-import { NewsComponent } from './news/news.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { NewsComponent } from './news/news.component';
+import { AppUiModule } from './app-ui.module';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { WikiComponent } from './wiki/wiki.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DashboardComponent,
-    NewsComponent
+    NewsComponent,
+    SideNavComponent,
+    WikiComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +48,21 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatButtonModule,
     LayoutModule,
     MatButtonToggleModule,
-    
+    AppUiModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHO67EXahchDlPYrBWArwuQhlLfsFZHM0'
     }),
     NgbModule,
+    RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
+      {path: 'news', component: NewsComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'wiki', component: WikiComponent},
+      {path: '', redirectTo: '/home', pathMatch: 'full'},
+    ]),
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
