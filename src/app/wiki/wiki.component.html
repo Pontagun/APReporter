@@ -2,6 +2,18 @@
 
 <h2>ข่าวล่าสุด</h2>
 
+<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+    <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+            <img [src]="image" alt="Random slide" class="mh-100" style="width: 100%; height: 50vh">
+        </div>
+        <div class="carousel-caption">
+            <h3>No mouse navigation</h3>
+            <p>This carousel hides navigation arrows and indicators.</p>
+        </div>
+    </ng-template>
+</ngb-carousel>
+
 <h2>ข่าวย้อนหลัง</h2>
 
 <table>
