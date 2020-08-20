@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/APReporter",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

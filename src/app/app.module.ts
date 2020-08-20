@@ -20,7 +20,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
-import { AppUiModule } from './app-ui.module';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,7 +47,6 @@ import { WikiComponent } from './wiki/wiki.component';
     MatButtonModule,
     LayoutModule,
     MatButtonToggleModule,
-    AppUiModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHO67EXahchDlPYrBWArwuQhlLfsFZHM0'
     }),
