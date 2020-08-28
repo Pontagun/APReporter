@@ -89,8 +89,8 @@ export class HomeComponent {
       this.sky = res["current"]["weather"][0]["description"]
       this.humidity = res["current"]["humidity"]
       this.rain = res["daily"][0]["rain"]
-      this.pressure = res["current"]["pressure"]
-      this.temp = res["current"]["temp"]
+      this.pressure = res["current"]["pressure"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      this.temp = (res["current"]["temp"] - 273.15).toFixed(2).toString()
       this.rain_pop = res["daily"][0]["pop"]
 
       this.weatherTiles = [
