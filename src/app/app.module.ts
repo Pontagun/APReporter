@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,12 +20,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { WikiComponent } from './wiki/wiki.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { WidgetService } from './widget.service';
 
 @NgModule({
   declarations: [
@@ -46,23 +48,24 @@ import { WikiComponent } from './wiki/wiki.component';
     MatIconModule,
     MatButtonModule,
     LayoutModule,
+    HttpClientModule,
     MatButtonToggleModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHO67EXahchDlPYrBWArwuQhlLfsFZHM0'
     }),
     NgbModule,
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
-      {path: 'news', component: NewsComponent},
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'wiki', component: WikiComponent},
-      {path: '', redirectTo: '/home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent },
+      { path: 'news', component: NewsComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'wiki', component: WikiComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
     ]),
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

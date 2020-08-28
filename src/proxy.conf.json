@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://www.cmuccdc.org",
+        "secure": false
+    }
+}
