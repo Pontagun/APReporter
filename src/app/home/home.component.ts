@@ -35,14 +35,14 @@ export class HomeComponent {
   aresult: any;
   wresult: any;
 
-  airtiles: Tile[]
-
+  airTiles: Tile[]
   weatherTiles: Tile[]
+
   monthNames: string[] = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
     "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
   ];
   data: any
-
+  day = new Date();
   sky = ""
   humidity = ""
   rain = ""
@@ -50,7 +50,6 @@ export class HomeComponent {
   temp = ""
   rain_pop = ""
 
-  day = new Date();
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -69,12 +68,103 @@ export class HomeComponent {
             }
           case 2:
             {
+              var today = new Date();
+              today.setDate(today.getDate()+1)
+              
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
+              this.airTiles = [
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: "-"
+                  , month: "-"
+                  , year: "-"
+                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
+                }
+              ];
               break;
             }
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
+              this.airTiles = [
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][2]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][3]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][3]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][3]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][3]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][4]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][4]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][4]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][4]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][5]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][5]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][5]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][5]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][6]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][6]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][6]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][6]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][7]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][7]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][7]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][7]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                },
+                {
+                  day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getDate().toString()
+                  , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getMonth()]
+                  , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getDate().toString()
+                  , value: this.aresult["data"]["forecast"]["daily"]["pm25"][2]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
+                }
+              ];
               break;
             }
         }
@@ -150,28 +240,15 @@ export class HomeComponent {
       this.home(pos.lat, pos.lng, sorceName)
       console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
-
-
   }
 
   ngOnInit() {
-
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
       console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
 
-    switch (this.currentAQI) {
-      case '15': {
-        this.currentLevel = 'แดง'
-        this.currentDescribtion = 'คุณภาพของอากาศส่งผลต่อสุขภาพ'
-        break
-      }
-    }
-
-    this.healthRecommends[0] = 'หลีกเลี่ยงกิจกรรมกลางแจ้ง'
-    this.healthRecommends[1] = 'ใช้อุปกรณ์ป้องกันฝุ่นควัน'
-    this.healthRecommends[2] = 'หากมีเหตุการปกติ ให้พบแพทย์โดยด่วน'
-    this.healthRecommends[3] = 'หากมีเหตุการปกติ ให้พบแพทย์โดยด่วน'
+    this.currentLevel = 'สีแดง'
+    this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
   }
 }

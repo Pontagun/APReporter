@@ -44,17 +44,23 @@
                         <mat-grid-list cols="6" rowHeight="150px">
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">1</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        NO2 <br> ไนโตรเจนไดออกไซด์ <br> {{no2}} <br> ppb
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">2</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        SO2 <br> ซัลเฟอร์ไดออกไซด์ <br> {{so2}} <br> ppb
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">3</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        O3 <br> โอโซน <br> {{o3}} <br> ppb
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                         </mat-grid-list>
@@ -63,17 +69,23 @@
                         <mat-grid-list cols="6" rowHeight="150px">
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">1</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        CO <br> คาร์บอนมอนออกไซด์ <br> {{co}} <br> ppm
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">2</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        PM10 <br> ฝุ่นขนาดไม่เกิน 10 ไมครอน <br> {{pm10}} <br> ug/m3
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card">
-                                    <mat-card-content class="dashboard-card-content">3</mat-card-content>
+                                    <mat-card-content class="dashboard-card-content">
+                                        PM2.5 <br> ฝุ่นขนาดไม่เกิน 2.5 ไมครอน <br> {{pm25}} <br> ug/m3
+                                    </mat-card-content>
                                 </mat-card>
                             </mat-grid-tile>
                         </mat-grid-list>
@@ -95,17 +107,35 @@
                     <mat-grid-list cols="9" rowHeight="150px">
                         <mat-grid-tile [colspan]="3" [rowspan]="2">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">1</mat-card-content>
+                                <mat-card-content class="dashboard-card-content">
+                                    อุณหภูมิ <br> {{temp}} <br> องศาเซลเซียส (C) <br> สูงสุด {{maxTemp}} <br> ต่ำสุด {{minTemp}}
+                                </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="6" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">2</mat-card-content>
+                                <mat-card-content class="dashboard-card-content">{{sky}}</mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
-                        <mat-grid-tile [colspan]="6" [rowspan]="1">
+                        <mat-grid-tile [colspan]="2" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">3</mat-card-content>
+                                <mat-card-content class="dashboard-card-content">
+                                    ความชื้น <br> {{humidity}} <br> เปอร์เซ็นต์ (%)
+                                </mat-card-content>
+                            </mat-card>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="2" [rowspan]="1">
+                            <mat-card class="dashboard-card">
+                                <mat-card-content class="dashboard-card-content">
+                                    ความกดอากาศ <br> {{pressure}} <br> มิลลิบาร์ (mb)
+                                </mat-card-content>
+                            </mat-card>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="2" [rowspan]="1">
+                            <mat-card class="dashboard-card">
+                                <mat-card-content class="dashboard-card-content">
+                                    ปริมาณน้ำฝน <br> {{rain}}} <br> มิลลิเมตร (mm)
+                                </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                     </mat-grid-list>
@@ -113,58 +143,8 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-    <!-- Weahter card -->
+    <!-- Map -->
     <agm-map [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
-
-    <!-- <mat-grid-list cols="4" rowHeight="450">
-    <mat-grid-tile [colspan]="4" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            <h2>สภาพอากาศ</h2>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <mat-grid-list cols="4" rowHeight="150px">
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">1</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">2</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">3</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">4</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </mat-card-content>
-        <mat-card-content class="dashboard-card-content">
-          <mat-grid-list cols="4" rowHeight="150px">
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">1</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="3" [rowspan]="1">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">2</mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list> -->
 </div>

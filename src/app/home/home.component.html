@@ -1,30 +1,40 @@
 <div class="grid-container">
-    <h1 class="mat-h1">สภาพอากาศ</h1>
+    <div class="">
+        <h1 class="sansserif">สภาพอากาศ</h1>
+    </div>
     <!-- AQI Index card -->
     <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="dashboard-card">
-                <mat-card-header>
-                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                        <mat-button-toggle value="bold" (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
-                        <mat-button-toggle value="italic" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
-                        <mat-button-toggle value="underline" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
+                <mat-card-header class="red-header-card">
+                    <mat-button-toggle-group class="btn-magin" name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle class="btn-red" (click)="OnClickSource(1)">
+                            CMAQI
+                        </mat-button-toggle>
+                        <mat-button-toggle class="btn-red" (click)="OnClickSource(2)">
+                            IQAir
+                        </mat-button-toggle>
+                        <mat-button-toggle class="btn-red" (click)="OnClickSource(3)">
+                            AQICN
+                        </mat-button-toggle>
                     </mat-button-toggle-group>
                 </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
+                <mat-card-content class="dashboard-card-content red-body-card">
+                    <br><br>
                     <div>
                         <h2>คุณภาพอากาศวันนี้</h2>
                     </div>
                     <div>
-                        <h2>{{currentAQI}}</h2>
+                        <h2 class="red-font">{{currentAQI}}</h2>
                     </div>
+                    <br>
                 </mat-card-content>
-                <mat-card-footer>
+                <mat-card-footer class="dashboard-card-footer">
                     <div>
-                        <h2>{{currentLevel}}</h2>
+                        <h5 class="text-red-no-margin-btm">{{currentLevel}}</h5>
                     </div>
-                    <div>
-                        <h4>{{currentDescribtion}}</h4>
+                    <div class="text-left">
+                        {{currentDescribtion}}
                     </div>
                 </mat-card-footer>
             </mat-card>
@@ -35,7 +45,7 @@
                 <mat-card-header>
                     <mat-card-title>
                         <div>
-                            <h3>คำแนะนำด้านสุขภาพ</h3>
+                            <h2>คำแนะนำด้านสุขภาพ</h2>
                         </div>
                     </mat-card-title>
                 </mat-card-header>
@@ -44,13 +54,13 @@
                         <li *ngFor="let rec of healthRecommends"><span>{{rec}}</span></li>
                     </ul>
                 </mat-card-content>
-                <mat-card-actions><a mat-raised-button href="{{moreDetailLink}}" target="_blank">อ่านเพิ่มเติม</a>
+                <mat-card-actions class="dashboard-card-footer"><a mat-raised-button href="{{moreDetailLink}}" target="_blank">อ่านเพิ่มเติม</a>
                 </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
     <!-- AQI Forecast card -->
-    <mat-grid-list cols="7" rowHeight="450px">
+    <mat-grid-list cols="7" rowHeight="350px">
         <mat-grid-tile [colspan]="7" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>
@@ -59,17 +69,19 @@
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
-                    <mat-grid-list cols="7" rowHeight="120px">
-                        <mat-grid-tile *ngFor="let tile of airtiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows">
-                            <h2>{{tile.day}}</h2> <br>
-                            <h2>{{tile.month}}</h2>
+                    <mat-grid-list cols="7" rowHeight="60px">
+                        <mat-grid-tile *ngFor="let tile of airTiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows">
+                            <div class="a">{{tile.day}}</div> <br>
+                        </mat-grid-tile>
+                        <mat-grid-tile *ngFor="let tile of airTiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows">
+                            <div class="b">{{tile.month}}</div>
                         </mat-grid-tile>
                     </mat-grid-list>
                     <!-- </mat-card-content>
         <mat-card-content class="dashboard-card-content"> -->
-                    <mat-grid-list cols="7" rowHeight="120px">
-                        <mat-grid-tile *ngFor="let tile of airtiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-                            <span>{{tile.value}}</span>
+                    <mat-grid-list cols="7" rowHeight="120px" class="red-text-bg">
+                        <mat-grid-tile *ngFor="let tile of airTiles; let i = index" [colspan]="tile.cols" [rowspan]="tile.rows">
+                            {{tile.value}}
                         </mat-grid-tile>
                     </mat-grid-list>
                 </mat-card-content>
@@ -89,30 +101,32 @@
                     <mat-grid-list cols="4" rowHeight="150px">
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">{{sky}}</mat-card-content>
+                                <mat-card-content>{{sky}}</mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">
-                                    ความชื้น<br> {{humidity}}
-                                    <br> เปอร์เซ็น (%)
+                                <mat-card-content>
+                                    ความชื้น
+                                    <h2>{{humidity}}</h2>
+                                    เปอร์เซ็น (%)
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">
-                                    ปริมาณน้ำฝน<br> {{rain}}
-                                    <br> มิลลิเมตร (mm)
+                                <mat-card-content>
+                                    ปริมาณน้ำฝน
+                                    <h2>{{rain}}</h2> มิลลิเมตร (mm)
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">
-                                <mat-card-content class="dashboard-card-content">
-                                    ความกดอากาศ<br> {{pressure}}
-                                    <br> มิลลิบาร์ (mb)
+                                <mat-card-content>
+                                    ความกดอากาศ
+                                    <h2> {{pressure}}
+                                    </h2> มิลลิบาร์ (mb)
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
@@ -123,8 +137,9 @@
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">
                                 <mat-card-content class="dashboard-card-content">
-                                    อุณหภูมิ<br> {{temp}}
-                                    <br> องศาเซลเซียส (C)
+                                    อุณหภูมิ
+                                    <h2> {{temp}}
+                                    </h2> องศาเซลเซียส (C)
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>

@@ -31,3 +31,7 @@
     top: 5px;
     right: 5px;
 }
+
+.grad1 {
+    background-image: linear-gradient(#f6dffc, #e9e5fe, white, white, white);
+}
