@@ -31,6 +31,11 @@ export class DashboardComponent {
   moreDetailLink = 'https://www.google.com/'
   wresult: any;
 
+  currentCardHeadColor = ''
+  currentCardBodyColor = ''
+  currentCardTxtColor = ''
+  currentCardFooterColor = ''
+
   sky = ""
   humidity = ""
   rain = ""
@@ -94,6 +99,37 @@ export class DashboardComponent {
               this.o3 = this.aresult["data"]["forecast"]["daily"]["o3"][2]["avg"]
               this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
               this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
+
+              if (this.currentAQI <= 50) {
+                this.currentLevel = 'สีเขียว'
+                this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
+                this.currentCardHeadColor = 'green-header-card'
+                this.currentCardBodyColor = 'green-body-card'
+                this.currentCardTxtColor = 'green-font'
+                this.currentCardFooterColor = "green-text-no-margin-btm"
+              } else if (this.currentAQI <= 100) {
+                this.currentLevel = 'สีเหลือง'
+                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
+                this.currentCardHeadColor = 'yellow-header-card'
+                this.currentCardBodyColor = 'yellow-body-card'
+                this.currentCardTxtColor = 'yellow-font'
+                this.currentCardFooterColor = "yellow-text-no-margin-btm"
+              } else if (this.currentAQI <= 150) {
+                this.currentLevel = 'สีส้ม'
+                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
+                this.currentCardHeadColor = 'orange-header-card'
+                this.currentCardBodyColor = 'orange-body-card'
+                this.currentCardTxtColor = 'orange-font'
+                this.currentCardFooterColor = "orange-text-no-margin-btm"
+              } else if (this.currentAQI <= 200) {
+                this.currentLevel = 'สีแดง'
+                this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
+                this.currentCardHeadColor = 'red-header-card'
+                this.currentCardBodyColor = 'red-body-card'
+                this.currentCardTxtColor = 'red-font'
+                this.currentCardFooterColor = "red-text-no-margin-btm"
+              }
+
               break;
             }
         }

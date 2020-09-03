@@ -26,6 +26,10 @@ export class HomeComponent {
   currentAQI = ''
   currentLevel = ''
   currentDescribtion = ''
+  currentCardHeadColor = ''
+  currentCardBodyColor = ''
+  currentCardTxtColor = ''
+  currentCardFooterColor = ''
 
   defautIndex = 3;
 
@@ -37,19 +41,18 @@ export class HomeComponent {
 
   airTiles: Tile[]
   weatherTiles: Tile[]
-
+  cmucdcScore: number[] = [50, 100, 150, 200]
+  aqiScore: number[] = [50, 100, 150, 200]
+  aqiCNScore: number[] = [50, 100, 150, 200]
   monthNames: string[] = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
     "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
   ];
   data: any
   day = new Date();
-  sky = ""
-  humidity = ""
-  rain = ""
-  pressure = ""
-  temp = ""
-  rain_pop = ""
+  sky = ""; humidity = ""; rain = ""; pressure = ""; temp = ""; rain_pop = "";
 
+  airHeadColor = ""
+  airBodyColor = ""
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -69,58 +72,53 @@ export class HomeComponent {
           case 2:
             {
               var today = new Date();
-              today.setDate(today.getDate()+1)
-              
+              today.setDate(today.getDate() + 1)
+
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
               this.airTiles = [
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                },
-                {
-                  day: "-"
-                  , month: "-"
-                  , year: "-"
-                  , value: "-", cols: 1, rows: 1, color: 'lightblue'
-                }
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' }
               ];
               break;
             }
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
+              if (this.currentAQI <= "50") {
+                this.currentLevel = 'สีเขียว'
+                this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
+                this.currentCardHeadColor = 'green-header-card'
+                this.currentCardBodyColor = 'green-body-card'
+                this.currentCardTxtColor = 'green-font'
+                this.currentCardFooterColor = "green-text-no-margin-btm"
+              } else if (this.currentAQI <= "100") {
+                this.currentLevel = 'สีเหลือง'
+                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
+                this.currentCardHeadColor = 'yellow-header-card'
+                this.currentCardBodyColor = 'yellow-body-card'
+                this.currentCardTxtColor = 'yellow-font'
+                this.currentCardFooterColor = "yellow-text-no-margin-btm"
+              } else if (this.currentAQI <= "150") {
+                this.currentLevel = 'สีส้ม'
+                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
+                this.currentCardHeadColor = 'orange-header-card'
+                this.currentCardBodyColor = 'orange-body-card'
+                this.currentCardTxtColor = 'orange-font'
+                this.currentCardFooterColor = "orange-text-no-margin-btm"
+              } else if (this.currentAQI <= "200") {
+                this.currentLevel = 'สีแดง'
+                this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
+                this.currentCardHeadColor = 'red-header-card'
+                this.currentCardBodyColor = 'red-body-card'
+                this.currentCardTxtColor = 'red-font'
+                this.currentCardFooterColor = "red-text-no-margin-btm"
+              }
+
               this.airTiles = [
                 {
                   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
@@ -165,6 +163,18 @@ export class HomeComponent {
                   , value: this.aresult["data"]["forecast"]["daily"]["pm25"][2]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
                 }
               ];
+
+              for (var i = 0; i < this.airTiles.length; i++) {
+                if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[0]) {
+                  this.airTiles[i].color = "green-text-bg"
+                } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[1]) {
+                  this.airTiles[i].color = "yellow-text-bg"
+                } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[2]) {
+                  this.airTiles[i].color = "orange-text-bg"
+                } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[3]) {
+                  this.airTiles[i].color = "red-text-bg"
+                }
+              }
               break;
             }
         }
