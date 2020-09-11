@@ -21,9 +21,9 @@ export interface Tile {
 export class DashboardComponent {
 
   title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007;
-  currentAQI = 0
+  lat = 0;
+  lng = 0;
+  currentAQI = ''
   currentLevel = ''
   currentDescribtion = ''
   aresult: any;
@@ -44,7 +44,7 @@ export class DashboardComponent {
   rain_pop = ""
   minTemp = ""
   maxTemp = ""
-  defautIndex = 3;
+  defautIndex = 1;
   tiles: Tile[] = [
     { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
     { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
@@ -55,19 +55,9 @@ export class DashboardComponent {
   constructor(private breakpointObserver: BreakpointObserver,
     private widgetService: WidgetService,
     private http: HttpClient) {
-    // this.currentAQI = 300
-    // switch (this.currentAQI) {
-    //   case 15: {
-    //     this.currentLevel = 'แดง'
-    //     this.currentDescribtion = 'คุณภาพของอากาศส่งผลต่อสุขภาพ'
-    //     break
-    //   }
-    // }
-
     // this.healthRecommends[0] = 'หลีกเลี่ยงกิจกรรมกลางแจ้ง'
     // this.healthRecommends[1] = 'ใช้อุปกรณ์ป้องกันฝุ่นควัน'
     // this.healthRecommends[2] = 'หากมีเหตุการปกติ ให้พบแพทย์โดยด่วน'
-    // this.healthRecommends[3] = 'หากมีเหตุการปกติ ให้พบแพทย์โดยด่วน'
   }
 
   home(lat: any, lng: any, index: any = this.defautIndex) {
@@ -77,6 +67,15 @@ export class DashboardComponent {
         switch (index) {
           case 1:
             {
+              this.currentAQI = this.aresult["us_aqi"]
+              this.no2 = "-"
+              this.so2 = "-"
+              this.co = "-"
+              this.o3 = "-"
+              this.pm10 = this.aresult["pm10_us_aqi"]
+              this.pm25 = this.aresult["pm25_us_aqi"]
+
+              this.setAQIcardColor(this.currentAQI)
               break;
             }
           case 2:
@@ -88,6 +87,8 @@ export class DashboardComponent {
               this.o3 = "-"
               this.pm10 = "-"
               this.pm25 = "-"
+
+              this.setAQIcardColor(this.currentAQI)
               break;
             }
           case 3:
@@ -100,36 +101,7 @@ export class DashboardComponent {
               this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
               this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
 
-              if (this.currentAQI <= 50) {
-                this.currentLevel = 'สีเขียว'
-                this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
-                this.currentCardHeadColor = 'green-header-card'
-                this.currentCardBodyColor = 'green-body-card'
-                this.currentCardTxtColor = 'green-font'
-                this.currentCardFooterColor = "green-text-no-margin-btm"
-              } else if (this.currentAQI <= 100) {
-                this.currentLevel = 'สีเหลือง'
-                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
-                this.currentCardHeadColor = 'yellow-header-card'
-                this.currentCardBodyColor = 'yellow-body-card'
-                this.currentCardTxtColor = 'yellow-font'
-                this.currentCardFooterColor = "yellow-text-no-margin-btm"
-              } else if (this.currentAQI <= 150) {
-                this.currentLevel = 'สีส้ม'
-                this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
-                this.currentCardHeadColor = 'orange-header-card'
-                this.currentCardBodyColor = 'orange-body-card'
-                this.currentCardTxtColor = 'orange-font'
-                this.currentCardFooterColor = "orange-text-no-margin-btm"
-              } else if (this.currentAQI <= 200) {
-                this.currentLevel = 'สีแดง'
-                this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
-                this.currentCardHeadColor = 'red-header-card'
-                this.currentCardBodyColor = 'red-body-card'
-                this.currentCardTxtColor = 'red-font'
-                this.currentCardFooterColor = "red-text-no-margin-btm"
-              }
-
+              this.setAQIcardColor(this.currentAQI)
               break;
             }
         }
@@ -137,6 +109,7 @@ export class DashboardComponent {
         error => {
           console.log('data error !');
         });
+
     this.widgetService.getWeather(lng, lat).subscribe(res => {
       this.wresult = res
       this.minTemp = (res["daily"][0]["temp"]["min"] - 273.15).toFixed(2).toString()
@@ -154,17 +127,46 @@ export class DashboardComponent {
   }
 
   OnClickSource(sorceName: any) {
-    console.log(sorceName)
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng, sorceName)
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
+  }
+
+  setAQIcardColor(currentAQI: String) {
+    if (currentAQI <= "50") {
+      this.currentLevel = 'สีเขียว'
+      this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
+      this.currentCardHeadColor = 'green-header-card'
+      this.currentCardBodyColor = 'green-body-card'
+      this.currentCardTxtColor = 'green-font'
+      this.currentCardFooterColor = "green-text-no-margin-btm"
+    } else if (currentAQI <= "100") {
+      this.currentLevel = 'สีเหลือง'
+      this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
+      this.currentCardHeadColor = 'yellow-header-card'
+      this.currentCardBodyColor = 'yellow-body-card'
+      this.currentCardTxtColor = 'yellow-font'
+      this.currentCardFooterColor = "yellow-text-no-margin-btm"
+    } else if (currentAQI <= "150") {
+      this.currentLevel = 'สีส้ม'
+      this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
+      this.currentCardHeadColor = 'orange-header-card'
+      this.currentCardBodyColor = 'orange-body-card'
+      this.currentCardTxtColor = 'orange-font'
+      this.currentCardFooterColor = "orange-text-no-margin-btm"
+    } else if (currentAQI <= "200") {
+      this.currentLevel = 'สีแดง'
+      this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
+      this.currentCardHeadColor = 'red-header-card'
+      this.currentCardBodyColor = 'red-body-card'
+      this.currentCardTxtColor = 'red-font'
+      this.currentCardFooterColor = "red-text-no-margin-btm"
+    }
   }
 
   ngOnInit() {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
   }
 }

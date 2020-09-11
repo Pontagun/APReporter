@@ -49,6 +49,7 @@ export class WikiComponent implements OnInit {
         this.idHeadline = this.head["id"]
         this.imgHeadline = 'assets/image/' + this.head["image"] //this.images[0]
         this.headline = this.head["title"]
+        this.captionHeadline = this.head["description"]
         this.pathHeadline = this.linkPath + this.head["path"]
 
         for (let n of res) {

@@ -7,7 +7,7 @@
 }
 
 .grid-container {
-    margin: 50px;
+    margin: 50px 100px 100px 100px;
 }
 
 .example-radio-group {
@@ -22,6 +22,10 @@
     height: 200px;
     margin: 0 auto;
     background-color: #FFA500;
+}
+
+.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .pagination {
@@ -82,4 +86,13 @@ table.center {
 mat-card-footer.btn-read {
     text-align: right;
     padding-right: 16px;
+}
+
+p.caption {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    max-width: 400px;
+    max-height: 300px;
 }

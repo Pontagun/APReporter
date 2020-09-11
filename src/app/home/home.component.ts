@@ -31,7 +31,7 @@ export class HomeComponent {
   currentCardTxtColor = ''
   currentCardFooterColor = ''
 
-  defautIndex = 3;
+  defautIndex = 1;
 
   healthRecommends: any = []
 
@@ -63,9 +63,20 @@ export class HomeComponent {
     this.widgetService.getAirIndex(lat, lng, index)
       .subscribe(res => {
         this.aresult = res
+        this.airTiles = [
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
+          { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' }
+        ];
         switch (index) {
           case 1:
             {
+              this.currentAQI = this.aresult["us_aqi"]
+              this.setAQIcardColor(this.currentAQI)
               break;
             }
           case 2:
@@ -76,15 +87,6 @@ export class HomeComponent {
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
               this.setAQIcardColor(this.currentAQI)
 
-              this.airTiles = [
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
-                { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' }
-              ];
               break;
             }
           case 3:
@@ -225,10 +227,8 @@ export class HomeComponent {
   }
 
   OnClickSource(sorceName: any) {
-    console.log(sorceName)
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng, sorceName)
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
   }
 

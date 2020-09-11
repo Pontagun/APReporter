@@ -25,7 +25,7 @@ export class WidgetService {
     switch (id) {
       case 1: {
         // cmuccdc
-        this.airURL = "https://www.cmuccdc.org/api/ccdc/value/6"
+        this.airURL = "http://127.0.0.1:5000/dustboy?station=92"
         console.log(this.airURL)
         break
       }

@@ -39,7 +39,7 @@
 }
 
 .grad1 {
-    background-image: linear-gradient(#f6dffc, #e9e5fe, white, white, white);
+    background-image: linear-gradient(#f6dffc, #e9e5fe, rgb(216, 216, 216), white);
 }
 
 a.black-text {
