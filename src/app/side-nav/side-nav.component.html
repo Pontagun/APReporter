@@ -1,35 +1,29 @@
 <mat-drawer-container class="example-container grad1" autosize>
+    <div class="example-sidenav-content">
+        <div class="top-left-menu">
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div class="top-right-menu">
+            <nav>
+                <a class="button black-text" routerLink="/home" routerLinkActive="activebutton">สภาพอากาศ</a>
+                <a class="button black-text" routerLink="/dashboard" routerLinkActive="activebutton">คุณภาพอากาศ</a>
+                <a class="button black-text" routerLink="/news" routerLinkActive="activebutton">ข่าวสาร</a>
+                <a class="button black-text" routerLink="/wiki" routerLinkActive="activebutton">คลังข้อมูล</a>
+            </nav>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
 
-    <mat-drawer #drawer class="example-sidenav" mode="over">
-        <button (click)="drawer.toggle()">
-          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 0 1 0 .708L5.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h6.5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-          </svg>
-        </button>
+    <mat-drawer #drawer class="example-sidenav sidenav" mode="over">
+        <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
         <p><button type="button" mat-button class="block" routerLink="/home">ตรวจสอบสภาพอากาศ</button></p>
         <p><button type="button" mat-button class="block">ข้อมูลหลักสูตร</button></p>
         <p><button type="button" mat-button class="block">ติดต่อผู้เชี่ยวชาญ</button></p>
         <p><button type="button" mat-button class="block">ข้อความ</button></p>
         <p><button type="button" mat-button class="block">การตั้งค่า</button></p>
     </mat-drawer>
-
-    <div class="example-sidenav-content">
-
-        <div class="top-left-menu">
-            <button mat-icon-button color="accent" (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        </div>
-        <div class="top-right-menu">
-            <nav>
-                <a class="button" routerLink="/home" routerLinkActive="activebutton">Home</a> |
-                <a class="button" routerLink="/dashboard" routerLinkActive="activebutton">Dashboard</a> |
-                <a class="button" routerLink="/news" routerLinkActive="activebutton">News</a> |
-                <a class="button" routerLink="/wiki" routerLinkActive="activebutton">Wiki</a> |
-            </nav>
-        </div>
-        <router-outlet></router-outlet>
-    </div>
-
 </mat-drawer-container>

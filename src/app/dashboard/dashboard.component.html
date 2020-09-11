@@ -3,14 +3,14 @@
         <h1 class="sansserif">สภาพอากาศ</h1>
     </div>
     <!-- AQI Index Card -->
-    <mat-grid-list cols="9" rowHeight="450px">
+    <mat-grid-list cols="9" rowHeight="470px">
         <mat-grid-tile [colspan]="3" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header [ngClass]="currentCardHeadColor">
                     <mat-button-toggle-group class="btn-magin" name="fontStyle" aria-label="Font Style">
-                        <mat-button-toggle class="btn-red" (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
-                        <mat-button-toggle class="btn-red" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
-                        <mat-button-toggle class="btn-red" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
+                        <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
+                        <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
+                        <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
                     </mat-button-toggle-group>
                 </mat-card-header>
                 <mat-card-content [ngClass]="currentCardBodyColor">
@@ -35,7 +35,7 @@
         </mat-grid-tile>
         <!-- Compound Card-->
         <mat-grid-tile [colspan]="6" [rowspan]="1">
-            <mat-card class="dashboard-card light-gray-bg">
+            <mat-card class="dashboard-card">
                 <mat-card-header>
                     <mat-card-title>
                         <br>
@@ -48,7 +48,7 @@
                     <mat-card-content class="dashboard-card-content">
                         <mat-grid-list cols="6" rowHeight="170px">
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>NO2</h4>ไนโตรเจนไดออกไซด์
                                         <h2> {{no2}} </h2> ppb
@@ -56,7 +56,7 @@
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>SO2</h4>ซัลเฟอร์ไดออกไซด์
                                         <h2> {{so2}} </h2> ppb
@@ -64,7 +64,7 @@
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>O3</h4>โอโซน
                                         <h2>{{o3}}</h2>ppb
@@ -76,7 +76,7 @@
                     <mat-card-content class="dashboard-card-content">
                         <mat-grid-list cols="6" rowHeight="170px">
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>CO</h4>คาร์บอนมอนออกไซด์
                                         <h2> {{co}} </h2> ppm
@@ -84,7 +84,7 @@
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>PM10</h4>ฝุ่นขนาดไม่เกิน 10 ไมครอน
                                         <h2> {{pm10}} </h2> ug/m3
@@ -92,7 +92,7 @@
                                 </mat-card>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
-                                <mat-card class="dashboard-card gray-bg">
+                                <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
                                         <h4>PM2.5</h4>ฝุ่นขนาดไม่เกิน 2.5 ไมครอน
                                         <h2> {{pm25}} </h2> ug/m3
@@ -106,7 +106,7 @@
         </mat-grid-tile>
     </mat-grid-list>
     <!-- Weather -->
-    <mat-grid-list cols="9" rowHeight="450px">
+    <mat-grid-list cols="9" rowHeight="400px">
         <mat-grid-tile [colspan]="9" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>

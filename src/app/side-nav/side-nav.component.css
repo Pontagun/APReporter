@@ -4,6 +4,8 @@
 
 .sidenav {
     width: 200px;
+    background-color: #666666;
+    color: #f8f7ff;
 }
 
 .sidenav .mat-toolbar {
@@ -30,8 +32,17 @@
     position: absolute;
     top: 5px;
     right: 5px;
+    color: rgb(37, 37, 37);
+    text-decoration: none;
+    background-color: none;
+    margin: 10px;
 }
 
 .grad1 {
     background-image: linear-gradient(#f6dffc, #e9e5fe, white, white, white);
+}
+
+a.black-text {
+    color: black;
+    padding: 10px;
 }

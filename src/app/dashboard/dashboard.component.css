@@ -16,12 +16,19 @@
     right: 10px;
 }
 
-.dashboard-card-round {
+.dashboard-card-content {
     text-align: center;
 }
 
-.dashboard-card-content {
+.dashboard-card-circle {
+    position: absolute;
+    top: 15px;
+    left: 55px;
+    right: 55px;
+    bottom: 15px;
     text-align: center;
+    border-radius: 100px;
+    box-shadow: none;
 }
 
 agm-map {
@@ -91,7 +98,7 @@ p span {
 }
 
 .btn-magin {
-    margin: 10px 10px 10px 10px;
+    margin: 10px 10px 10px -20px;
 }
 
 .btn-padding {
@@ -138,6 +145,7 @@ div.b {
 }
 
 .red-font {
+    font-size: 75px;
     margin: 10px 10px 10px 10px;
     color: #a9615a;
 }
@@ -157,6 +165,7 @@ div.b {
 }
 
 .orange-font {
+    font-size: 75px;
     margin: 10px 10px 10px 10px;
     color: #eb963e;
 }
@@ -177,6 +186,7 @@ div.b {
 }
 
 .yellow-font {
+    font-size: 75px;
     margin: 10px 10px 10px 10px;
     color: #896f43;
 }
@@ -189,6 +199,8 @@ div.b {
 .green-header-card {
     left: 20px;
     background-color: #557d52;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
 }
 
 .green-body-card {
@@ -197,6 +209,7 @@ div.b {
 }
 
 .green-font {
+    font-size: 75px;
     margin: 10px 10px 10px 10px;
     color: #557d52;
 }

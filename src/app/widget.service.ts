@@ -15,6 +15,7 @@ export class WidgetService {
 
   airURL = ""
   weatherURL = ""
+  newsURL = ""
   aqiCNToken = "6f0bd0ed71ccee8988757f353b8a920deaa0741a"
   IQAireToken = "82dabd61-cb09-4a09-b82b-8d724f4d6e5e"
 
@@ -65,8 +66,23 @@ export class WidgetService {
       pipe(map(response => { return response; }));
   }
 
+  getNews(): Observable<any> {
+    this.newsURL = "http://127.0.0.1:5000/news"
+    return this.http
+      .get(this.newsURL).
+      pipe(map(response => { return response; }));
+  }
+
+  getWiki(): Observable<any> {
+    this.newsURL = "http://127.0.0.1:5000/wiki"
+    return this.http
+      .get(this.newsURL).
+      pipe(map(response => { return response; }));
+  }
+
   convertUnixTime(tUnix: any) {
     var date = new Date(tUnix * 1000);
     return date;
   }
+
 }

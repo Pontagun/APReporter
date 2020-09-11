@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
+import { WidgetService } from '../widget.service';
+
 @Component({
   selector: 'app-wiki',
   templateUrl: './wiki.component.html',
@@ -8,16 +10,59 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class WikiComponent implements OnInit {
 
-  constructor(config: NgbCarouselConfig) { 
+  constructor(
+    private config: NgbCarouselConfig,
+    private widgetService: WidgetService,
+  ) {
     config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
   }
+
+  linkPath = "http://localhost:3000/en/"
+
   page = 4
   pageSize = 3
   showNavigationArrows = false;
   showNavigationIndicators = false;
-  images = [1055, 194, 368].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  ngOnInit(): void {
+
+  head: any;
+  idHeadline: number
+  imgHeadline = ""
+  headline = ""
+  captionHeadline = ""
+  pathHeadline = ""
+
+  images = []
+  titles = []
+  paths = []
+  ids = []
+
+  historyNews = []
+
+  ngOnInit() {
+    this.widgetService.getWiki()
+      .subscribe(res => {
+
+        this.head = res.shift();
+        this.historyNews = res
+
+        this.idHeadline = this.head["id"]
+        this.imgHeadline = 'assets/image/' + this.head["image"] //this.images[0]
+        this.headline = this.head["title"]
+        this.pathHeadline = this.linkPath + this.head["path"]
+
+        for (let n of res) {
+          n["image"] = 'assets/image/' + n["image"]
+          n["path"] = this.linkPath + n["path"]
+
+          // this.images.push(n["image"])
+          // this.titles.push(n["titles"])
+          // this.paths.push(n["path"])
+          // this.ids.push(n["id"])
+        }
+      },
+        error => {
+          console.log('data error !');
+        });
   }
-  items: string[] = ['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'A', 'A', 'A', 'A']
 }
