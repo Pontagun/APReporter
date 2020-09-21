@@ -219,7 +219,6 @@ export class HomeComponent {
         //   , value: res["daily"][7]["weather"][0]["main"], cols: 1, rows: 1, color: 'lightblue'
         // },
       ];
-      console.log("Set weather OK")
     },
       error => {
         console.log('data error !');
@@ -267,7 +266,6 @@ export class HomeComponent {
   ngOnInit() {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
   }
 }

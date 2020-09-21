@@ -16,29 +16,25 @@ export class WidgetService {
   airURL = ""
   weatherURL = ""
   newsURL = ""
-  aqiCNToken = "6f0bd0ed71ccee8988757f353b8a920deaa0741a"
-  IQAireToken = "82dabd61-cb09-4a09-b82b-8d724f4d6e5e"
 
-  weatherToken = "220aabafd04062943967fc23974cc8d5"
+  url = "http://127.0.0.1:5000"
+
 
   getAirIndex(lat, lng, id): Observable<any> {
     switch (id) {
       case 1: {
         // cmuccdc
-        this.airURL = "http://127.0.0.1:5000/dustboy?station=92"
-        console.log(this.airURL)
+        this.airURL = this.url + "/dustboy?station=92"
         break
       }
       case 2: {
         // IQAir
-        this.airURL = "https://api.airvisual.com/v2/nearest_city?lat=" + lat + "&lon=" + lng + "&key=" + this.IQAireToken
-        console.log(this.airURL)
+        this.airURL = this.url + "/iqair?lat=" + lat + "&lon=" + lng
         break
       }
       case 3: {
         // AQICN
-        this.airURL = "https://api.waqi.info/feed/geo:" + lat + ";" + lng + "/?token=" + this.aqiCNToken
-        console.log(this.airURL)
+        this.airURL = this.url + "/aqicn?lat=" + lat + "&lon=" + lng
         break
       }
     }
@@ -59,22 +55,23 @@ export class WidgetService {
   }
 
   getWeather(lng, lat): Observable<any> {
-    this.weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat="
-      + lat + "&lon=" + lng + "&exclude=minutely,hourly&appid=" + this.weatherToken
+    // this.weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat="
+    //   + lat + "&lon=" + lng + "&exclude=minutely,hourly&appid=" + this.weatherToken
+    this.weatherURL = this.url + "/weather?lat=" + lat + "&lon=" + lng
     return this.http
       .get(this.weatherURL).
       pipe(map(response => { return response; }));
   }
 
   getNews(): Observable<any> {
-    this.newsURL = "http://127.0.0.1:5000/news"
+    this.newsURL = this.url + "/news"
     return this.http
       .get(this.newsURL).
       pipe(map(response => { return response; }));
   }
 
   getWiki(): Observable<any> {
-    this.newsURL = "http://127.0.0.1:5000/wiki"
+    this.newsURL = this.url + "/wiki"
     return this.http
       .get(this.newsURL).
       pipe(map(response => { return response; }));
