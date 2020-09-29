@@ -48,7 +48,7 @@ export class NewsComponent implements OnInit {
         this.historyNews = res
 
         this.idHeadline = this.head["id"]
-        this.imgHeadline = 'assets/image/' + this.head["image"] //this.images[0]
+        this.imgHeadline = "data:image/png;base64," + this.head["data"]
         this.headline = this.head["title"]
         this.captionHeadline = this.head["description"]
         this.pathHeadline = this.linkPath + this.head["path"]
