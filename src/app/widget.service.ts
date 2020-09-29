@@ -55,8 +55,6 @@ export class WidgetService {
   }
 
   getWeather(lng, lat): Observable<any> {
-    // this.weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat="
-    //   + lat + "&lon=" + lng + "&exclude=minutely,hourly&appid=" + this.weatherToken
     this.weatherURL = this.url + "/weather?lat=" + lat + "&lon=" + lng
     return this.http
       .get(this.weatherURL).
