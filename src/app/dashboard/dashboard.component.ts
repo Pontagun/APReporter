@@ -75,7 +75,7 @@ export class DashboardComponent {
               this.pm10 = this.aresult["pm10_us_aqi"]
               this.pm25 = this.aresult["pm25_us_aqi"]
 
-              this.setAQIcardColor(this.currentAQI)
+              this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
           case 2:
@@ -88,7 +88,7 @@ export class DashboardComponent {
               this.pm10 = "-"
               this.pm25 = "-"
 
-              this.setAQIcardColor(this.currentAQI)
+              this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
           case 3:
@@ -101,7 +101,7 @@ export class DashboardComponent {
               this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
               this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
 
-              this.setAQIcardColor(this.currentAQI)
+              this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
         }
@@ -132,29 +132,29 @@ export class DashboardComponent {
     });
   }
 
-  setAQIcardColor(currentAQI: String) {
-    if (currentAQI <= "50") {
+  setAQIcardColor(currentAQI: Number) {
+    if (currentAQI <= 50) {
       this.currentLevel = 'สีเขียว'
       this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'green-header-card'
       this.currentCardBodyColor = 'green-body-card'
       this.currentCardTxtColor = 'green-font'
       this.currentCardFooterColor = "green-text-no-margin-btm"
-    } else if (currentAQI <= "100") {
+    } else if (currentAQI <= 100) {
       this.currentLevel = 'สีเหลือง'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
       this.currentCardHeadColor = 'yellow-header-card'
       this.currentCardBodyColor = 'yellow-body-card'
       this.currentCardTxtColor = 'yellow-font'
       this.currentCardFooterColor = "yellow-text-no-margin-btm"
-    } else if (currentAQI <= "150") {
+    } else if (currentAQI <= 150) {
       this.currentLevel = 'สีส้ม'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
       this.currentCardHeadColor = 'orange-header-card'
       this.currentCardBodyColor = 'orange-body-card'
       this.currentCardTxtColor = 'orange-font'
       this.currentCardFooterColor = "orange-text-no-margin-btm"
-    } else if (currentAQI <= "200") {
+    } else if (currentAQI <= 200) {
       this.currentLevel = 'สีแดง'
       this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'red-header-card'

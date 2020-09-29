@@ -24,7 +24,7 @@ export class WidgetService {
     switch (id) {
       case 1: {
         // cmuccdc
-        this.airURL = this.url + "/dustboy?station=92"
+        this.airURL = this.url + "/dustboy?station=6"
         break
       }
       case 2: {
