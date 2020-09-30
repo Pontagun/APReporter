@@ -12,7 +12,6 @@ services:
     ports:
       - "3307:3306"
     expose:
-      # Opens port 3306 on the container
       - "3306"
     restart: unless-stopped
     volumes:
@@ -32,15 +31,17 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-  web:
+
+  airkmWeb:
     restart: always
     # build: .
-    image: pontagun/airkm-website:0.6
+    image: pontagun/airkm-website:0.8
     ports:
       - "80:80"
-  api:
+
+  airkmApi:
     restart: always
-    #    build: .
+    # build: .
     image: pontagun/airkm:0.3
     depends_on:
       - db

@@ -18,7 +18,7 @@ export class WikiComponent implements OnInit {
     config.showNavigationIndicators = true;
   }
 
-  linkPath = "http://localhost:3000/en/"
+  linkPath = "https://airkm-admin.datascience.cmu.ac.th/en/"
 
   page = 4
   pageSize = 3

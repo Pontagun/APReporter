@@ -17,7 +17,7 @@ export class WidgetService {
   weatherURL = ""
   newsURL = ""
 
-  url = "http://192.168.1.110:5000"
+  url = "https://airkm-api.datascience.cmu.ac.th/"
 
 
   getAirIndex(lat, lng, id): Observable<any> {
