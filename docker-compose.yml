@@ -1,0 +1,50 @@
+version: "3"
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: wiki
+      MYSQL_PASSWORD: wikijsrocks
+      MYSQL_ROOT_PASSWORD: wikijsrocks
+      MYSQL_USER: wikijs
+    logging:
+      driver: "none"
+    ports:
+      - "3307:3306"
+    expose:
+      # Opens port 3306 on the container
+      - "3306"
+    restart: unless-stopped
+    volumes:
+      - my-db:/var/lib/mysql
+
+  wiki:
+    image: requarks/wiki:2.4.107
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+  web:
+    restart: always
+    # build: .
+    image: pontagun/airkm-website:0.6
+    ports:
+      - "80:80"
+  api:
+    restart: always
+    #    build: .
+    image: pontagun/airkm:0.3
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+volumes:
+  my-db:

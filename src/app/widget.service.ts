@@ -17,7 +17,7 @@ export class WidgetService {
   weatherURL = ""
   newsURL = ""
 
-  url = "http://127.0.0.1:5000"
+  url = "http://192.168.1.110:5000"
 
 
   getAirIndex(lat, lng, id): Observable<any> {

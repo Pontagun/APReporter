@@ -24,10 +24,6 @@
     background-color: #FFA500;
 }
 
-.sansserif {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .pagination {
     display: flex;
     padding-left: 0px;
@@ -41,6 +37,7 @@ h1 {
 }
 
 .carousel-center {
+    width: 100%;
     text-align: center;
 }
 
@@ -73,7 +70,7 @@ a.button {
 }
 
 .card-pagination {
-    margin: 20px;
+    margin: 20px 20px 20px -5px;
     width: 400px;
     height: 400px;
 }
@@ -95,4 +92,8 @@ p.caption {
     font-weight: normal;
     max-width: 400px;
     max-height: 300px;
+}
+
+.carousel-caption {
+    padding: 20px 15px 15px 15px;
 }

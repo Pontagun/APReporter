@@ -47,13 +47,14 @@ export class WikiComponent implements OnInit {
         this.historyNews = res
 
         this.idHeadline = this.head["id"]
-        this.imgHeadline = 'assets/image/' + this.head["image"] //this.images[0]
+        this.imgHeadline = "data:image/jpeg;base64," + this.head["data"]
         this.headline = this.head["title"]
         this.captionHeadline = this.head["description"]
         this.pathHeadline = this.linkPath + this.head["path"]
 
         for (let n of res) {
-          n["image"] = 'assets/image/' + n["image"]
+          // n["image"] = 'assets/image/' + n["image"]
+          n["image"] = "data:image/jpeg;base64," + n["data"]
           n["path"] = this.linkPath + n["path"]
 
           // this.images.push(n["image"])
