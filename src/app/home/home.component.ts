@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { WidgetService } from '../widget.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, interval } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators'
 
 export interface Tile {
@@ -31,7 +31,7 @@ export class HomeComponent {
   currentCardTxtColor = ''
   currentCardFooterColor = ''
 
-  defautIndex = 1;
+  defautIndex = 3;
 
   healthRecommends: any = []
 

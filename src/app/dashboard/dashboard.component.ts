@@ -44,7 +44,7 @@ export class DashboardComponent {
   rain_pop = ""
   minTemp = ""
   maxTemp = ""
-  defautIndex = 1;
+  defautIndex = 3;
   tiles: Tile[] = [
     { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
     { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
