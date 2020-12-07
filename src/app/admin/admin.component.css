@@ -1,0 +1,198 @@
+.grid-container {
+    margin: 20px;
+}
+
+.grad1 {
+    height: 200px;
+    background-image: linear-gradient(pink, white);
+}
+
+h2 {
+    margin: 10px;
+}
+
+.date {
+    position: absolute;
+    right: 8px;
+    top: 42px;
+    text-shadow: 1px 1px #000000;
+    color: white;
+    text-decoration-color: none;
+}
+
+.dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+}
+
+.dashboard-card-content {
+    text-align: center;
+}
+
+.dashboard-card-footer {
+    position: absolute;
+    left: 30px;
+    text-align: left;
+}
+
+p span {
+    display: block;
+}
+
+.mat-card {
+    padding: 0px;
+}
+
+.mat-card-content {
+    text-align: left;
+    margin: 10px;
+}
+
+.btn-magin {
+    margin: 10px 10px 10px -20px;
+}
+
+.text-left {
+    margin-left: 10px;
+}
+
+div.a {
+    font-size: 50px;
+}
+
+div.b {
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+.gray-bg {
+    background-color: rgb(209, 209, 209);
+}
+
+
+/* AQI main card */
+
+.red-header-card {
+    left: 20px;
+    background-color: #9f4f48;
+}
+
+.red-body-card {
+    text-align: center;
+    background-color: #efdfdf;
+}
+
+.red-font {
+    font-size: 75px;
+    margin: 10px 10px 10px 10px;
+    color: #a9615a;
+}
+
+.red-text-no-margin-btm {
+    margin: 10px 10px 0px 10px;
+    color: #a9615a;
+}
+
+.orange-header-card {
+    left: 20px;
+    background-color: #eb963e;
+}
+
+.orange-body-card {
+    text-align: center;
+    background-color: #fed596;
+}
+
+.orange-font {
+    font-size: 75px;
+    margin: 10px 10px 10px 10px;
+    color: #eb963e;
+}
+
+.orange-text-no-margin-btm {
+    margin: 10px 10px 0px 10px;
+    color: #eb963e;
+}
+
+.yellow-header-card {
+    left: 20px;
+    background-color: #896f43;
+}
+
+.yellow-body-card {
+    text-align: center;
+    background-color: #fcf7e4;
+}
+
+.yellow-font {
+    font-size: 75px;
+    margin: 10px 10px 10px 10px;
+    color: #896f43;
+}
+
+.yellow-text-no-margin-btm {
+    margin: 10px 10px 0px 10px;
+    color: #896f43;
+}
+
+.green-header-card {
+    left: 20px;
+    background-color: #557d52;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+}
+
+.green-body-card {
+    text-align: center;
+    background-color: #e2edd7;
+}
+
+.green-font {
+    font-size: 75px;
+    margin: 10px 10px 10px 10px;
+    color: #557d52;
+}
+
+.green-text-no-margin-btm {
+    margin: 10px 10px 0px 10px;
+    color: #557d52;
+}
+
+
+/* AQI forecast */
+
+.red-text-bg {
+    color: #9f514c;
+    background-color: #f2dedc;
+    font-size: 60px;
+}
+
+.orange-text-bg {
+    color: #eb963e;
+    background-color: #fed596;
+    font-size: 60px;
+}
+
+.yellow-text-bg {
+    color: #896f43;
+    background-color: #fcf7e4;
+    font-size: 60px;
+}
+
+.green-text-bg {
+    color: #557d52;
+    background-color: #e2edd7;
+    font-size: 60px;
+}
+
+.btn-center {
+    vertical-align: middle;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}

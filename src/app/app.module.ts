@@ -28,7 +28,10 @@ import { WikiComponent } from './wiki/wiki.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { WidgetService } from './widget.service';
-
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { AdminComponent } from './admin/admin.component';
+import { MatTableModule } from '@angular/material/table'  
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,10 @@ import { WidgetService } from './widget.service';
     DashboardComponent,
     NewsComponent,
     SideNavComponent,
-    WikiComponent
+    WikiComponent,
+    ContactComponent,
+    AboutComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -50,16 +56,21 @@ import { WidgetService } from './widget.service';
     LayoutModule,
     HttpClientModule,
     MatButtonToggleModule,
+    MatTableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHO67EXahchDlPYrBWArwuQhlLfsFZHM0'
     }),
     NgbModule,
     RouterModule.forRoot([
+      { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'news', component: NewsComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'wiki', component: WikiComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'about', component: AboutComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'contact', component: ContactComponent },
+      // { path: '', redirectTo: '/home', pathMatch: 'full' },
     ]),
     MatToolbarModule,
     MatSidenavModule,

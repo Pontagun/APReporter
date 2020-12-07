@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { Observable, Subscription, interval } from 'rxjs';
 import { WidgetService } from '../widget.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,7 +19,7 @@ export interface Tile {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
+  private updateSubscription: Subscription;
   title = 'My first AGM project';
   lat = 0;
   lng = 0;
@@ -168,5 +168,11 @@ export class DashboardComponent {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
     });
+    this.updateSubscription = interval(1000*60*60).subscribe(
+      (val) => {
+        this.widgetService.getPosition().then(pos => {
+          this.home(pos.lat, pos.lng)
+        });
+      });
   }
 }
