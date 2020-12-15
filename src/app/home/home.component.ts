@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { WidgetService } from '../widget.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, interval } from 'rxjs';
+import { Observable, Subscription, throwError, interval } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators'
 
 export interface Tile {
@@ -23,6 +23,7 @@ export interface Tile {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  private updateSubscription: Subscription;
   currentAQI = ''
   currentLevel = ''
   currentDescribtion = ''
@@ -63,6 +64,7 @@ export class HomeComponent {
     this.widgetService.getAirIndex(lat, lng, index)
       .subscribe(res => {
         this.aresult = res
+        this.healthRecommends[0] = this.aresult["suite"][0]["Detail"]
         this.airTiles = [
           { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
           { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
@@ -267,5 +269,11 @@ export class HomeComponent {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
     });
+    this.updateSubscription = interval(1000*60*60).subscribe(
+      (val) => {
+        this.widgetService.getPosition().then(pos => {
+          this.home(pos.lat, pos.lng)
+        });
+      });
   }
 }

@@ -17,7 +17,8 @@ export class WidgetService {
   weatherURL = ""
   newsURL = ""
 
-  url = "https://airkm-api.datascience.cmu.ac.th/"
+  // url = "https://airkm-api.datascience.cmu.ac.th"
+  url = "http://0.0.0.0:80";
 
 
   getAirIndex(lat, lng, id): Observable<any> {

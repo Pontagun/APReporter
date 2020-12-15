@@ -18,7 +18,7 @@ services:
       - my-db:/var/lib/mysql
 
   wiki:
-    image: requarks/wiki:2.4.107
+    image: requarks/wiki:latest
     depends_on:
       - db
     environment:
@@ -35,14 +35,14 @@ services:
   airkmWeb:
     restart: always
     # build: .
-    image: pontagun/airkm-website:0.8
+    image: pontagun/airkm-website:latest
     ports:
       - "80:80"
 
   airkmApi:
     restart: always
     # build: .
-    image: pontagun/airkm:0.3
+    image: pontagun/airkm:latest
     depends_on:
       - db
     ports:

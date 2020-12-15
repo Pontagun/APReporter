@@ -18,6 +18,7 @@ export interface Tile {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent {
   private updateSubscription: Subscription;
   title = 'My first AGM project';
@@ -68,12 +69,12 @@ export class DashboardComponent {
           case 1:
             {
               this.currentAQI = this.aresult["us_aqi"]
-              this.no2 = "-"
-              this.so2 = "-"
-              this.co = "-"
-              this.o3 = "-"
-              this.pm10 = this.aresult["pm10_us_aqi"]
-              this.pm25 = this.aresult["pm25_us_aqi"]
+              // this.no2 = "-"
+              // this.so2 = "-"
+              // this.co = "-"
+              // this.o3 = "-"
+              // this.pm10 = this.aresult["pm10_us_aqi"]
+              // this.pm25 = this.aresult["pm25_us_aqi"]
 
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
@@ -81,12 +82,12 @@ export class DashboardComponent {
           case 2:
             {
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
-              this.no2 = "-"
-              this.so2 = "-"
-              this.co = "-"
-              this.o3 = "-"
-              this.pm10 = "-"
-              this.pm25 = "-"
+              // this.no2 = "-"
+              // this.so2 = "-"
+              // this.co = "-"
+              // this.o3 = "-"
+              // this.pm10 = "-"
+              // this.pm25 = "-"
 
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
@@ -168,7 +169,7 @@ export class DashboardComponent {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
     });
-    this.updateSubscription = interval(1000*60*60).subscribe(
+    this.updateSubscription = interval(1000 * 60 * 60).subscribe(
       (val) => {
         this.widgetService.getPosition().then(pos => {
           this.home(pos.lat, pos.lng)
