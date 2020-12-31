@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { WidgetService } from '../widget.service';
 
+export interface Specialist {
+  email: string;
+  id: string;
+  memberof: string;
+  name: string;
+  position: string;
+  tel: string;
+}
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -7,9 +16,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  people: Specialist[] = [];
+  wikiLink = 'https://airkm-admin.datascience.cmu.ac.th'
+  constructor(private widgetService: WidgetService,) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.widgetService.getSpecialist()
+      .subscribe(res => {
+        this.people = res
+      },
+        error => {
+          console.log('data error !');
+        });
   }
+
+
 
 }

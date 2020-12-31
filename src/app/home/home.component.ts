@@ -83,19 +83,16 @@ export class HomeComponent {
             }
           case 2:
             {
-              var today = new Date();
-              today.setDate(today.getDate() + 1)
-
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
               this.setAQIcardColor(parseInt(this.currentAQI))
-
               break;
             }
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
               this.setAQIcardColor(parseInt(this.currentAQI))
-
+              console.log("Hello World")
+              console.log(this.aresult["data"]["forecast"]["daily"]["pm25"])
               this.airTiles = [
                 {
                   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
@@ -269,7 +266,7 @@ export class HomeComponent {
     this.widgetService.getPosition().then(pos => {
       this.home(pos.lat, pos.lng)
     });
-    this.updateSubscription = interval(1000*60*60).subscribe(
+    this.updateSubscription = interval(1000 * 60 * 60).subscribe(
       (val) => {
         this.widgetService.getPosition().then(pos => {
           this.home(pos.lat, pos.lng)

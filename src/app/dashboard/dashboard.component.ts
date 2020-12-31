@@ -30,6 +30,7 @@ export class DashboardComponent {
   aresult: any;
   healthRecommends: any = []
   moreDetailLink = 'https://www.google.com/'
+  wikiLink = 'https://airkm-admin.datascience.cmu.ac.th'
   wresult: any;
 
   currentCardHeadColor = ''
@@ -69,26 +70,12 @@ export class DashboardComponent {
           case 1:
             {
               this.currentAQI = this.aresult["us_aqi"]
-              // this.no2 = "-"
-              // this.so2 = "-"
-              // this.co = "-"
-              // this.o3 = "-"
-              // this.pm10 = this.aresult["pm10_us_aqi"]
-              // this.pm25 = this.aresult["pm25_us_aqi"]
-
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
           case 2:
             {
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
-              // this.no2 = "-"
-              // this.so2 = "-"
-              // this.co = "-"
-              // this.o3 = "-"
-              // this.pm10 = "-"
-              // this.pm25 = "-"
-
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
@@ -101,7 +88,6 @@ export class DashboardComponent {
               this.o3 = this.aresult["data"]["forecast"]["daily"]["o3"][2]["avg"]
               this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
               this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
-
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }

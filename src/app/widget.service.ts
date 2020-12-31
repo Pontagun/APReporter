@@ -16,9 +16,10 @@ export class WidgetService {
   airURL = ""
   weatherURL = ""
   newsURL = ""
+  specialistURL = ""
 
-  // url = "https://airkm-api.datascience.cmu.ac.th"
-  url = "http://0.0.0.0:80";
+  url = "https://airkm-api.datascience.cmu.ac.th"
+  // url = "http://0.0.0.0:80";
 
 
   getAirIndex(lat, lng, id): Observable<any> {
@@ -73,6 +74,13 @@ export class WidgetService {
     this.newsURL = this.url + "/wiki"
     return this.http
       .get(this.newsURL).
+      pipe(map(response => { return response; }));
+  }
+
+  getSpecialist(): Observable<any> {
+    this.specialistURL = this.url + "/specialist"
+    return this.http
+      .get(this.specialistURL).
       pipe(map(response => { return response; }));
   }
 
