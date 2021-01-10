@@ -5,6 +5,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { stringify } from '@angular/compiler/src/util';
 import { map } from 'rxjs/operators';
+
+export interface IRecomendation {
+  red: String;
+  orange: String;
+  yellow: String;
+  green: String;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +25,7 @@ export class WidgetService {
   weatherURL = ""
   newsURL = ""
   specialistURL = ""
-
+  rec: IRecomendation
   url = "https://airkm-api.datascience.cmu.ac.th"
   // url = "http://0.0.0.0:80";
 
@@ -81,6 +89,25 @@ export class WidgetService {
     this.specialistURL = this.url + "/specialist"
     return this.http
       .get(this.specialistURL).
+      pipe(map(response => { return response; }));
+  }
+
+  getHealthReccommendation(): Observable<any>{
+    this.specialistURL = this.url + "/recommendation"
+    return this.http
+      .get(this.specialistURL).
+      pipe(map(response => { return response; }));
+  }
+
+  setHealthReccommendation(arg1: String, arg2: String, arg3: String, arg4: String): Observable<any> {
+    this.rec = { red: arg1, orange: arg2, yellow: arg3, green: arg4 }
+    console.log(this.rec)
+    this.specialistURL = this.url + "/recommendation"
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(this.rec);
+    console.log(body)
+    return this.http
+      .put(this.specialistURL, body, { 'headers': headers }).
       pipe(map(response => { return response; }));
   }
 

@@ -13,43 +13,40 @@
                 <mat-card-content class="dashboard-card-content">
                     <mat-grid-list cols="4">
                         <mat-grid-tile [colspan]="3" [rowspan]="2">
-                            <table>
-                                <tr>
-                                    <th>Company</th>
-                                    <th>Contact</th>
-                                    <th>Country</th>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: red;">Alfreds Futterkiste</td>
-                                    <td>Maria Anders</td>
-                                    <td>Germany</td>
-                                </tr>
-                                <tr>
-                                    <td>Centro comercial Moctezuma</td>
-                                    <td>Francisco Chang</td>
-                                    <td>Mexico</td>
-                                </tr>
-                                <tr>
-                                    <td>Ernst Handel</td>
-                                    <td>Roland Mendel</td>
-                                    <td>Austria</td>
-                                </tr>
-                                <tr>
-                                    <td>Island Trading</td>
-                                    <td>Helen Bennett</td>
-                                    <td>UK</td>
-                                </tr>
-                                <tr>
-                                    <td>Laughing Bacchus Winecellars</td>
-                                    <td>Yoshi Tannamuri</td>
-                                    <td>Canada</td>
-                                </tr>
-                                <tr>
-                                    <td>Magazzini Alimentari Riuniti</td>
-                                    <td>Giovanni Rovelli</td>
-                                    <td>Italy</td>
-                                </tr>
-                            </table>
+                            <mat-card class="dashboard-card">
+                                <mat-card-header>
+                                    <h2>Health Reccomendation</h2>
+                                </mat-card-header>
+                                <mat-card-content class="btn-center">
+                                    <!-- <form #myform="ngForm" (ngSubmit)="onSubmit(myform)"> -->
+                                    <table class="table ">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Color</th>
+                                                <th scope="col">Recommendation</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td style="background-color: red;"></td>
+                                            <td><textarea class="form-control" row="3" [(ngModel)]="red_rec"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: orange;"></td>
+                                            <td><textarea class="form-control" row="3" [(ngModel)]="ora_rec"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: yellow;"></td>
+                                            <td><textarea class="form-control" row="3" [(ngModel)]="yel_rec"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: yellowgreen;"></td>
+                                            <td><textarea class="form-control" row="3" [(ngModel)]="gre_rec"></textarea></td>
+                                        </tr>
+                                    </table>
+                                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                                    <!-- </form> -->
+                                </mat-card-content>
+                            </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card class="dashboard-card">

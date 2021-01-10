@@ -31,7 +31,9 @@ import { WidgetService } from './widget.service';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
-import { MatTableModule } from '@angular/material/table'  
+import { MatTableModule } from '@angular/material/table';
+
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +77,7 @@ import { MatTableModule } from '@angular/material/table'
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    FormsModule,
   ],
   providers: [WidgetService],
   bootstrap: [AppComponent]

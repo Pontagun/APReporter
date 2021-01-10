@@ -31,6 +31,7 @@ export class HomeComponent {
   currentCardBodyColor = ''
   currentCardTxtColor = ''
   currentCardFooterColor = ''
+  currentRec = ''
 
   defautIndex = 3;
 
@@ -64,7 +65,6 @@ export class HomeComponent {
     this.widgetService.getAirIndex(lat, lng, index)
       .subscribe(res => {
         this.aresult = res
-        this.healthRecommends[0] = this.aresult["suite"][0]["Detail"]
         this.airTiles = [
           { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
           { day: "-", month: "-", year: "-", value: "-", cols: 1, rows: 1, color: 'lightblue' },
@@ -131,12 +131,6 @@ export class HomeComponent {
                   , value: this.aresult["data"]["forecast"]["daily"]["pm25"][7]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
                 }
                 ,
-                // {
-                //   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getDate().toString()
-                //   , month: this.monthNames[(new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getMonth()]
-                //   , year: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][8]["day"])).getDate().toString()
-                //   , value: this.aresult["data"]["forecast"]["daily"]["pm25"][8]["avg"].toString(), cols: 1, rows: 1, color: 'lightblue'
-                // }
               ];
 
               for (var i = 0; i < this.airTiles.length; i++) {
@@ -205,18 +199,6 @@ export class HomeComponent {
           , year: this.widgetService.convertUnixTime(res["daily"][5]["dt"]).getFullYear().toString()
           , value: res["daily"][5]["weather"][0]["main"], cols: 1, rows: 1, color: 'lightblue'
         },
-        // {
-        //   day: this.widgetService.convertUnixTime(res["daily"][6]["dt"]).getDate().toString()
-        //   , month: this.monthNames[this.widgetService.convertUnixTime(res["daily"][6]["dt"]).getMonth()]
-        //   , year: this.widgetService.convertUnixTime(res["daily"][6]["dt"]).getFullYear().toString()
-        //   , value: res["daily"][6]["weather"][0]["main"], cols: 1, rows: 1, color: 'lightblue'
-        // },
-        // {
-        //   day: this.widgetService.convertUnixTime(res["daily"][7]["dt"]).getDate().toString()
-        //   , month: this.monthNames[this.widgetService.convertUnixTime(res["daily"][7]["dt"]).getMonth()]
-        //   , year: this.widgetService.convertUnixTime(res["daily"][7]["dt"]).getFullYear().toString()
-        //   , value: res["daily"][7]["weather"][0]["main"], cols: 1, rows: 1, color: 'lightblue'
-        // },
       ];
     },
       error => {
@@ -238,6 +220,7 @@ export class HomeComponent {
       this.currentCardBodyColor = 'green-body-card'
       this.currentCardTxtColor = 'green-font'
       this.currentCardFooterColor = "green-text-no-margin-btm"
+      this.currentRec = this.aresult["suite"][3]["Detail"]
     } else if (currentAQI <= 100) {
       this.currentLevel = 'สีเหลือง'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อย'
@@ -245,6 +228,7 @@ export class HomeComponent {
       this.currentCardBodyColor = 'yellow-body-card'
       this.currentCardTxtColor = 'yellow-font'
       this.currentCardFooterColor = "yellow-text-no-margin-btm"
+      this.currentRec = this.aresult["suite"][2]["Detail"]
     } else if (currentAQI <= 150) {
       this.currentLevel = 'สีส้ม'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
@@ -252,6 +236,7 @@ export class HomeComponent {
       this.currentCardBodyColor = 'orange-body-card'
       this.currentCardTxtColor = 'orange-font'
       this.currentCardFooterColor = "orange-text-no-margin-btm"
+      this.currentRec = this.aresult["suite"][1]["Detail"]
     } else if (currentAQI <= 200) {
       this.currentLevel = 'สีแดง'
       this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
@@ -259,6 +244,7 @@ export class HomeComponent {
       this.currentCardBodyColor = 'red-body-card'
       this.currentCardTxtColor = 'red-font'
       this.currentCardFooterColor = "red-text-no-margin-btm"
+      this.currentRec = this.aresult["suite"][0]["Detail"]
     }
   }
 
