@@ -1,9 +1,18 @@
+<!-- <ul>
+    <li *ngFor="let c of content">
+        <h2>{{c.title}} </h2>
+    </li>
+</ul> -->
 <div class="grid-container">
     <div class="">
         <h1 class="sansserif">คลังความรู้</h1>
     </div>
-
-    <div class="">
+    <ul>
+        <li *ngFor="let c of content">
+            <a href="{{linkPath}}/{{c.path}}" target="_blank" rel="noopener noreferrer">{{c.title}}</a>
+        </li>
+    </ul>
+    <!-- <div class="">
         <h2 class="sansserif">บทความล่าสุด</h2>
     </div>
     <div class="carousel-center">
@@ -32,11 +41,6 @@
                 <th *ngFor="let news of historyNews | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                     <div>
                         <mat-card class="example-card card-pagination">
-                            <!-- <mat-card-header>
-                            <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-title>{{news.title}}</mat-card-title>
-                            <mat-card-subtitle></mat-card-subtitle>
-                        </mat-card-header> -->
                             <img mat-card-image [src]="news.image">
                             <mat-card-content>
                                 <h6>{{news.title}}</h6>
@@ -57,5 +61,5 @@
     <div class="pagination">
         <ngb-pagination [collectionSize]="historyNews.length" [(page)]="page" [pageSize]="pageSize">
         </ngb-pagination>
-    </div>
+    </div> -->
 </div>

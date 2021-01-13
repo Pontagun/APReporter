@@ -26,6 +26,7 @@ export class WikiComponent implements OnInit {
   showNavigationIndicators = false;
 
   head: any;
+  content: any;
   idHeadline: number
   imgHeadline = ""
   headline = ""
@@ -42,26 +43,26 @@ export class WikiComponent implements OnInit {
   ngOnInit() {
     this.widgetService.getWiki()
       .subscribe(res => {
+        this.content = res
+        // this.head = res.shift();
+        // this.historyNews = res
 
-        this.head = res.shift();
-        this.historyNews = res
+        // this.idHeadline = this.head["id"]
+        // this.imgHeadline = "data:image/jpeg;base64," + this.head["data"]
+        // this.headline = this.head["title"]
+        // this.captionHeadline = this.head["description"]
+        // this.pathHeadline = this.linkPath + this.head["path"]
 
-        this.idHeadline = this.head["id"]
-        this.imgHeadline = "data:image/jpeg;base64," + this.head["data"]
-        this.headline = this.head["title"]
-        this.captionHeadline = this.head["description"]
-        this.pathHeadline = this.linkPath + this.head["path"]
+        // for (let n of res) {
+        //   // n["image"] = 'assets/image/' + n["image"]
+        //   n["image"] = "data:image/jpeg;base64," + n["data"]
+        //   n["path"] = this.linkPath + n["path"]
 
-        for (let n of res) {
-          // n["image"] = 'assets/image/' + n["image"]
-          n["image"] = "data:image/jpeg;base64," + n["data"]
-          n["path"] = this.linkPath + n["path"]
-
-          // this.images.push(n["image"])
-          // this.titles.push(n["titles"])
-          // this.paths.push(n["path"])
-          // this.ids.push(n["id"])
-        }
+        //   // this.images.push(n["image"])
+        //   // this.titles.push(n["titles"])
+        //   // this.paths.push(n["path"])
+        //   // this.ids.push(n["id"])
+        // }
       },
         error => {
           console.log('data error !');
