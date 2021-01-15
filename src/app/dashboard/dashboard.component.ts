@@ -30,7 +30,7 @@ export class DashboardComponent {
   aresult: any;
   healthRecommends: any = []
   moreDetailLink = 'https://www.google.com/'
-  wikiLink = 'https://airkm-admin.datascience.cmu.ac.th'
+  wikiLink = this.widgetService.wikiURL
   wresult: any;
 
   currentCardHeadColor = ''

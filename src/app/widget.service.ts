@@ -26,6 +26,7 @@ export class WidgetService {
   newsURL = ""
   specialistURL = ""
   rec: IRecomendation
+  wikiURL = "https://airkm-admin.datascience.cmu.ac.th"
   url = "https://airkm-api.datascience.cmu.ac.th"
   // url = "http://0.0.0.0:80";
 
@@ -92,7 +93,7 @@ export class WidgetService {
       pipe(map(response => { return response; }));
   }
 
-  getHealthReccommendation(): Observable<any>{
+  getHealthReccommendation(): Observable<any> {
     this.specialistURL = this.url + "/recommendation"
     return this.http
       .get(this.specialistURL).

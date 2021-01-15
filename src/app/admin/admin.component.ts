@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
   ora_rec: String
   yel_rec: String
   gre_rec: String
+  wikiURL: String
   myTextarea
   constructor(private widgetService: WidgetService,) { }
 
@@ -24,6 +25,7 @@ export class AdminComponent implements OnInit {
       this.ora_rec = res[1]["Detail"]
       this.yel_rec = res[2]["Detail"]
       this.gre_rec = res[3]["Detail"]
+      this.wikiURL = this.widgetService.wikiURL
     },
       error => {
         console.log('data error !');

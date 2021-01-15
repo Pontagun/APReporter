@@ -17,7 +17,7 @@ export interface Specialist {
 export class ContactComponent implements OnInit {
 
   people: Specialist[] = [];
-  wikiLink = 'https://airkm-admin.datascience.cmu.ac.th'
+  wikiLink = this.widgetService.wikiURL
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit() {
