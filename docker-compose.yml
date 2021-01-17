@@ -16,7 +16,6 @@ services:
     restart: unless-stopped
     volumes:
       - my-db:/var/lib/mysql
-
   wiki:
     image: requarks/wiki:latest
     depends_on:
@@ -31,14 +30,12 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-
   airkmWeb:
     restart: always
     # build: .
     image: pontagun/airkm-website:latest
     ports:
       - "80:80"
-
   airkmApi:
     restart: always
     # build: .
@@ -46,6 +43,13 @@ services:
     depends_on:
       - db
     ports:
-      - "6000:5000
+      - "6000:5000"
+  airkmVDO:
+    image: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ~/videos555:/usr/share/nginx/html
 volumes:
   my-db:
+  videos:

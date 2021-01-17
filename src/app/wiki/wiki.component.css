@@ -8,6 +8,7 @@
 
 .grid-container {
     margin: 50px 400px 100px 400px;
+    height: 600px;
 }
 
 .example-radio-group {
