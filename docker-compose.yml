@@ -49,7 +49,7 @@ services:
     ports:
       - 8000:80
     volumes:
-      - ~/videos555:/usr/share/nginx/html
+      - ~/airkm-videos:/usr/share/nginx/html
 volumes:
   my-db:
-  videos:
+  airkm-videos:
