@@ -33,7 +33,7 @@ export class HomeComponent {
   currentCardFooterColor = ''
   currentRec = ''
 
-  defautIndex = 3;
+  defautIndex = 4;
 
   healthRecommends: any = []
 
@@ -42,9 +42,9 @@ export class HomeComponent {
 
   airTiles: Tile[]
   weatherTiles: Tile[]
-  cmucdcScore: number[] = [50, 100, 150, 200]
-  aqiScore: number[] = [50, 100, 150, 200]
-  aqiCNScore: number[] = [50, 100, 150, 200]
+  cmucdcScore: number[] = [25, 50, 100, 200]
+  aqiScore: number[] = [25, 50, 100, 200]
+  aqiCNScore: number[] = [25, 50, 100, 200]
   monthNames: string[] = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
     "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
   ];
@@ -91,8 +91,6 @@ export class HomeComponent {
             {
               this.currentAQI = this.aresult["data"]["aqi"]
               this.setAQIcardColor(parseInt(this.currentAQI))
-              console.log("Hello World")
-              console.log(this.aresult["data"]["forecast"]["daily"]["pm25"])
               this.airTiles = [
                 {
                   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
@@ -135,15 +133,23 @@ export class HomeComponent {
 
               for (var i = 0; i < this.airTiles.length; i++) {
                 if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[0]) {
-                  this.airTiles[i].color = "green-text-bg"
+                  this.airTiles[i].color = "blue-text-bg"
                 } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[1]) {
-                  this.airTiles[i].color = "yellow-text-bg"
+                  this.airTiles[i].color = "green-text-bg"
                 } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[2]) {
-                  this.airTiles[i].color = "orange-text-bg"
+                  this.airTiles[i].color = "yellow-text-bg"
                 } else if (parseFloat(this.airTiles[i].value) <= this.aqiCNScore[3]) {
+                  this.airTiles[i].color = "orange-text-bg"
+                } else if (parseFloat(this.airTiles[i].value) > this.aqiCNScore[3]) {
                   this.airTiles[i].color = "red-text-bg"
                 }
               }
+              break;
+            }
+          case 4:
+            {
+              this.currentAQI = this.aresult["AQI"]
+              this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
         }
@@ -213,7 +219,15 @@ export class HomeComponent {
   }
 
   setAQIcardColor(currentAQI: Number) {
-    if (currentAQI <= 50) {
+    if (currentAQI <= 25) {
+      this.currentLevel = 'สีฟ้า'
+      this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
+      this.currentCardHeadColor = 'blue-header-card'
+      this.currentCardBodyColor = 'blue-body-card'
+      this.currentCardTxtColor = 'blue-font'
+      this.currentCardFooterColor = "blue-text-no-margin-btm"
+      this.currentRec = this.aresult["suite"][3]["Detail"]
+    } else if (currentAQI <= 50) {
       this.currentLevel = 'สีเขียว'
       this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'green-header-card'
@@ -229,7 +243,7 @@ export class HomeComponent {
       this.currentCardTxtColor = 'yellow-font'
       this.currentCardFooterColor = "yellow-text-no-margin-btm"
       this.currentRec = this.aresult["suite"][2]["Detail"]
-    } else if (currentAQI <= 150) {
+    } else if (currentAQI <= 200) {
       this.currentLevel = 'สีส้ม'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
       this.currentCardHeadColor = 'orange-header-card'
@@ -237,7 +251,7 @@ export class HomeComponent {
       this.currentCardTxtColor = 'orange-font'
       this.currentCardFooterColor = "orange-text-no-margin-btm"
       this.currentRec = this.aresult["suite"][1]["Detail"]
-    } else if (currentAQI <= 200) {
+    } else if (currentAQI > 200) {
       this.currentLevel = 'สีแดง'
       this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'red-header-card'

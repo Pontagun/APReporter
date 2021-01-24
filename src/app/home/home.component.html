@@ -1,6 +1,6 @@
 <div class="grid-container">
     <a href="https://airkm.datascience.cmu.ac.th/">
-        <img src="assets/image/banner.png" width="300" height="100">
+        <img src="assets/image/banner.png" width="350" height="120">
     </a>
 </div>
 <div class="grid-container">
@@ -13,11 +13,14 @@
             <mat-card class="dashboard-card">
                 <mat-card-header [ngClass]="currentCardHeadColor">
                     <mat-button-toggle-group class="btn-magin" name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(4)">Air4thai</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor " (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
                     </mat-button-toggle-group>
-                    <p class="date">{{day}}</p>
+                    <div class="date">
+                        {{day}}
+                    </div>
                 </mat-card-header>
                 <mat-card-content [ngClass]="currentCardBodyColor">
                     <br>
@@ -49,12 +52,18 @@
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <div style="word-wrap:break-word;">
+                    <div style="word-wrap:break-word; text-align:justify;">
                         <h6>{{currentRec}}</h6>
                     </div>
                 </mat-card-content>
-                <mat-card-actions class="dashboard-card-footer">
-                </mat-card-actions>
+                <mat-card-footer style="margin: 30px 30px 30px 30px;">
+                    <div>
+                        <a class="footer-text">หมายเหตุ อ้างอิงคุณภาพจาก air4thai.pcd.go.th</a>
+                        <a mat-raised-button color="primary" href="http://air4thai.pcd.go.th/webV2/" target="_blank" class="footer-btn">อ่านเพิ่มเติม</a>
+                    </div>
+                    <mat-card-actions class="dashboard-card-footer">
+                    </mat-card-actions>
+                </mat-card-footer>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>

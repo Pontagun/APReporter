@@ -1,11 +1,11 @@
 <div class="grid-container">
     <a href="https://airkm.datascience.cmu.ac.th/">
-        <img src="assets/image/banner.png" width="300" height="100">
+        <img src="assets/image/banner.png" width="350" height="120">
     </a>
 </div>
 <div class="grid-container">
     <div class="">
-        <h1 class="sansserif">สภาพอากาศ</h1>
+        <h1 class="sansserif">คุณภาพอากาศ</h1>
     </div>
     <!-- AQI Index Card -->
     <mat-grid-list cols="9" rowHeight="470px">
@@ -13,6 +13,7 @@
             <mat-card class="dashboard-card">
                 <mat-card-header [ngClass]="currentCardHeadColor">
                     <mat-button-toggle-group class="btn-magin" name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(4)">Air4thai</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(3)">AQICN</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(1)">CMAQI</mat-button-toggle>
                         <mat-button-toggle [ngClass]="currentCardBodyColor" (click)="OnClickSource(2)">IQAir</mat-button-toggle>
@@ -47,7 +48,6 @@
                         <div>
                             <h3>ค่ามลพิษในอากาศ</h3>
                         </div>
-                        <i><h6>*ค่าจาก AQICN</h6></i>
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="dashboard-card-content">
@@ -56,7 +56,7 @@
                             <mat-grid-tile [colspan]="2" [rowspan]="1">
                                 <mat-card class="dashboard-card-circle gray-bg">
                                     <mat-card-content class="dashboard-card-content">
-                                        <a href="{{wikiLink}}/NO2" target="_blank" rel="noopener noreferrer">
+                                        <a href="{{wikiLink}}/NO2">
                                             <h4>NO2</h4>
                                         </a>ไนโตรเจนไดออกไซด์
                                         <h2> {{no2}} </h2> ppb

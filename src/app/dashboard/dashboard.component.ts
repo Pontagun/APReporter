@@ -46,7 +46,7 @@ export class DashboardComponent {
   rain_pop = ""
   minTemp = ""
   maxTemp = ""
-  defautIndex = 3;
+  defautIndex = 4;
   tiles: Tile[] = [
     { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
     { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
@@ -66,6 +66,12 @@ export class DashboardComponent {
     this.widgetService.getAirIndex(lat, lng, index)
       .subscribe(res => {
         this.aresult = res
+        this.no2 = "-"
+              this.so2 = "-"
+              this.co = "-"
+              this.o3 = "-"
+              this.pm10 = "-"
+              this.pm25 = "-"
         switch (index) {
           case 1:
             {
@@ -88,6 +94,18 @@ export class DashboardComponent {
               this.o3 = this.aresult["data"]["forecast"]["daily"]["o3"][2]["avg"]
               this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
               this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
+              this.setAQIcardColor(parseInt(this.currentAQI))
+              break;
+            }
+          case 4:
+            {
+              this.currentAQI = this.aresult["AQI"]
+              this.no2 = this.aresult["NO2"]
+              this.so2 = this.aresult["SO2"]
+              this.co = this.aresult["CO"]
+              this.o3 = this.aresult["O3"]
+              this.pm10 = this.aresult["PM10"]
+              this.pm25 = this.aresult["PM25"]
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
@@ -120,7 +138,14 @@ export class DashboardComponent {
   }
 
   setAQIcardColor(currentAQI: Number) {
-    if (currentAQI <= 50) {
+    if (currentAQI <= 25) {
+      this.currentLevel = 'สีฟ้า'
+      this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
+      this.currentCardHeadColor = 'blue-header-card'
+      this.currentCardBodyColor = 'blue-body-card'
+      this.currentCardTxtColor = 'blue-font'
+      this.currentCardFooterColor = "blue-text-no-margin-btm"
+    } else if (currentAQI <= 50) {
       this.currentLevel = 'สีเขียว'
       this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'green-header-card'
@@ -134,14 +159,14 @@ export class DashboardComponent {
       this.currentCardBodyColor = 'yellow-body-card'
       this.currentCardTxtColor = 'yellow-font'
       this.currentCardFooterColor = "yellow-text-no-margin-btm"
-    } else if (currentAQI <= 150) {
+    } else if (currentAQI <= 200) {
       this.currentLevel = 'สีส้ม'
       this.currentDescribtion = 'คุณภาพของอากาศเริ่มส่งผลกระทบต่อสุขภาพเล็กน้อยปานกลาง'
       this.currentCardHeadColor = 'orange-header-card'
       this.currentCardBodyColor = 'orange-body-card'
       this.currentCardTxtColor = 'orange-font'
       this.currentCardFooterColor = "orange-text-no-margin-btm"
-    } else if (currentAQI <= 200) {
+    } else if (currentAQI > 200) {
       this.currentLevel = 'สีแดง'
       this.currentDescribtion = 'คุณภาพของอากาศส่งผลกระทบต่อสุขภาพ'
       this.currentCardHeadColor = 'red-header-card'

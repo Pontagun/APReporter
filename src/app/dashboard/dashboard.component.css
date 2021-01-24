@@ -254,3 +254,32 @@ div.b {
 .right-line {
     border-right: 4px rgb(100, 100, 100);
 }
+
+.blue-text-bg {
+    color: #69C9FA;
+    background-color: #cee1eb;
+    font-size: 60px;
+}
+
+.blue-header-card {
+    left: 20px;
+    background-color: #69C9FA;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+}
+
+.blue-body-card {
+    text-align: center;
+    background-color: #cee1eb;
+}
+
+.blue-font {
+    font-size: 75px;
+    margin: 10px 10px 10px 10px;
+    color: #69C9FA;
+}
+
+.blue-text-no-margin-btm {
+    margin: 10px 10px 0px 10px;
+    color: #69C9FA;
+}

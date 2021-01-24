@@ -15,16 +15,19 @@ export class AdminComponent implements OnInit {
   ora_rec: String
   yel_rec: String
   gre_rec: String
+  blu_rec: String
   wikiURL: String
   myTextarea
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit(): void {
+    this.blu_rec = ""
     this.widgetService.getHealthReccommendation().subscribe(res => {
       this.red_rec = res[0]["Detail"]
       this.ora_rec = res[1]["Detail"]
       this.yel_rec = res[2]["Detail"]
       this.gre_rec = res[3]["Detail"]
+      this.blu_rec = res[4]["Detail"]
       this.wikiURL = this.widgetService.wikiURL
     },
       error => {
@@ -37,7 +40,7 @@ export class AdminComponent implements OnInit {
   }
 
   submit() {
-    this.widgetService.setHealthReccommendation(this.red_rec, this.ora_rec, this.yel_rec, this.gre_rec)
+    this.widgetService.setHealthReccommendation(this.red_rec, this.ora_rec, this.yel_rec, this.gre_rec, this.blu_rec)
       .subscribe(res => {
         if (res["result"] == 200) {
           window.location.reload();

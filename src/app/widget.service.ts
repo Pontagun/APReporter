@@ -11,6 +11,7 @@ export interface IRecomendation {
   orange: String;
   yellow: String;
   green: String;
+  blue: String;
 }
 
 @Injectable({
@@ -46,6 +47,11 @@ export class WidgetService {
       case 3: {
         // AQICN
         this.airURL = this.url + "/aqicn?lat=" + lat + "&lon=" + lng
+        break
+      }
+      case 4: {
+        // IQAir
+        this.airURL = this.url + "/air4thai?lat=" + lat + "&lon=" + lng
         break
       }
     }
@@ -100,9 +106,8 @@ export class WidgetService {
       pipe(map(response => { return response; }));
   }
 
-  setHealthReccommendation(arg1: String, arg2: String, arg3: String, arg4: String): Observable<any> {
-    this.rec = { red: arg1, orange: arg2, yellow: arg3, green: arg4 }
-    console.log(this.rec)
+  setHealthReccommendation(arg1: String, arg2: String, arg3: String, arg4: String, arg5: String): Observable<any> {
+    this.rec = { red: arg1, orange: arg2, yellow: arg3, green: arg4, blue: arg5 }
     this.specialistURL = this.url + "/recommendation"
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(this.rec);
