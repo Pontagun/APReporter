@@ -44,12 +44,17 @@ services:
       - db
     ports:
       - "6000:5000"
-  airkmVDO:
-    image: nginx
+  airkm-air4thai:
+    restart: always
+    image: yokenoi/air4thai-chiang-mai
     ports:
-      - 8000:80
-    volumes:
-      - ~/airkm-videos:/usr/share/nginx/html
+      - "8000:5000"
+  # airkmVDO:
+  #   image: nginx
+  #   ports:
+  #     - 8000:80
+  #   volumes:
+  #     - ~/airkm-videos:/usr/share/nginx/html
 volumes:
   my-db:
   airkm-videos:
