@@ -226,7 +226,7 @@ export class HomeComponent {
       this.currentCardBodyColor = 'blue-body-card'
       this.currentCardTxtColor = 'blue-font'
       this.currentCardFooterColor = "blue-text-no-margin-btm"
-      this.currentRec = this.aresult["suite"][3]["Detail"]
+      this.currentRec = this.aresult["suite"][4]["Detail"]
     } else if (currentAQI <= 50) {
       this.currentLevel = 'สีเขียว'
       this.currentDescribtion = 'คุณภาพของอากาศไม่ส่งผลกระทบต่อสุขภาพ'
