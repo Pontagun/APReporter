@@ -283,3 +283,112 @@ div.b {
     margin: 10px 10px 0px 10px;
     color: #69C9FA;
 }
+
+.custom-card {
+    min-height: 350px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    overflow: hidden;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+
+.custom-card-header {
+    padding: 0.5em;
+}
+
+.custom-group-btn button { 
+    height: 48px;
+    border-left: 1px solid rgba(0,0,0,.12);
+    border-right: 1px solid rgba(0,0,0,.12);
+    padding: 0.5em 1em
+}
+
+.custom-card .date-label {
+    padding-top: 5px;
+    color: #fff;
+    text-shadow: 1px 1px #000000;
+    font-size: 15px;
+}
+
+.custom-card .header-text {
+    font-size: 32px;
+    padding-top: 25px;
+    font-weight: 500;
+}
+
+.custom-card .subheader-text {
+    font-size: 1.25em;
+    font-weight: 500;;
+}
+
+.status-text {
+    font-size: 1.25rem;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.eq-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-card {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    min-height: 120px;
+    border-radius: 4px;
+}
+
+.weather-card .weather-text {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.gas-label {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.custom-gray-circle .normal-label {
+    font-size:14px;
+    font-weight: normal;
+}
+
+.custom-gray-circle {
+    background-color: rgb(231, 231, 231);
+    border-radius: 10em;
+    width: 100%;
+    max-width: 12em;
+    height: 8em;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.abs-center {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.temp-text {
+    font-size: 75px;
+    margin: 0px;
+    line-height: 1.25em;
+}
+
+.sky-content {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    line-height: 150px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.custom-detail-card {
+    text-align: center;
+    background-color: rgb(231, 231, 231);
+    border-right: 1px solid #fff;
+    padding: 1em;
+}
