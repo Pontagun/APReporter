@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { WikiComponent } from './wiki.component';
 
@@ -6,7 +6,7 @@ describe('WikiComponent', () => {
   let component: WikiComponent;
   let fixture: ComponentFixture<WikiComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ WikiComponent ]
     })
