@@ -7,8 +7,137 @@
     <div class="">
         <h1>สภาพอากาศ</h1>
     </div>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="custom-card">
+                <div class="custom-card-header" [ngClass]="currentCardHeadColor">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn-group custom-group-btn" role="group">
+                                <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(3)" class="btn">AQICN</button>
+                                <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(1)" class="btn">CMAQI</button>
+                                <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(2)" class="btn">IQAir</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-right">
+                            <div class="date-label">{{day}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" [ngClass]="currentCardBodyColor">
+                    <div class="header-text">
+                        <div>คุณภาพอากาศวันนี้</div>
+                        <div>
+                            <h2 [ngClass]="currentCardTxtColor">{{currentAQI}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div>
+                        <div class="status-text" [ngClass]="currentCardFooterColor">{{currentLevel}}</div>
+                    </div>
+                    <div class="text-left">
+                        {{currentDescribtion}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 mt-4 mt-md-0">
+            <div class="custom-card p-3 ">
+                <div class="header-text pt-0">
+                    <div>คำแนะนำด้านสุขภาพ</div>
+                </div>
+                <div class='p-3' style="word-wrap:break-word;">
+                    <div>{{currentRec}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <div class="custom-card p-3">
+                <div class="header-text pt-0">
+                    <div>พยากรณ์คุณภาพอากาศ</div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md text-center" style="padding-left: 1px; padding-right: 1px;" *ngFor="let tile of airTiles; let i = index">
+                        <div class="a" style="height: 60px">{{tile.day}}</div>
+                        <div class="b">{{tile.month}}</div>
+                        <div [ngClass]="tile.color" style="line-height: 120px">{{tile.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <div class="custom-card p-3">
+                <div class="header-text pt-0">
+                    <div>สภาพอากาศ</div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3 mt-2">
+                        <div class="weather-card text-center pt-2">{{sky}}</div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-2">
+                        <div class="weather-card text-center">
+                            <div class="pt-3">ความชื้น</div>
+                            <div class="weather-text">{{humidity}}</div>
+                            <div>เปอร์เซ็น (%)</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-2">
+                        <div class="weather-card text-center">
+                            <div class="pt-3">ปริมาณน้ำฝน</div>
+                            <div class="weather-text">{{rain}}</div>
+                            <div>มิลลิเมตร (mm)</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-2">
+                        <div class="weather-card text-center">
+                            <div class="pt-3">ความกดอากาศ</div>
+                            <div class="weather-text">{{pressure}}</div>
+                            <div>มิลลิบาร์ (mb)</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-2 mt-md-4">
+                        <div class="weather-card text-center">
+                            <div class="pt-3">อุณหภูมิ</div>
+                            <div class="weather-text m-0 orange-text-no-margin-btm">{{temp}}</div>
+                            <div>องศาเซลเซียส (C)</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-9 mt-2 mt-md-4">
+                        <div class="weather-card text-center gray-bg">
+                            <div class="pt-3">โอกาสที่ฝนจะตก</div>
+                            <div class="weather-text">{{rain_pop}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <div class="custom-card p-3">
+                <div class="header-text pt-0">
+                    <div>พยากรณ์อากาศ</div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md text-center" style="padding-left: 1px; padding-right: 1px;" *ngFor="let tile of weatherTiles; let i = index">
+                        <div class="a" style="height: 60px">{{tile.day}}</div>
+                        <div class="b">{{tile.month}}</div>
+                        <div [style.background]="tile.color" style="line-height: 120px">{{tile.value}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- AQI Index card -->
-    <mat-grid-list cols="2" rowHeight="350px">
+    <!-- <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header [ngClass]="currentCardHeadColor">
@@ -40,9 +169,9 @@
                     </div>
                 </mat-card-footer>
             </mat-card>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
         <!-- Health recommendation card -->
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>
                     <mat-card-title>
@@ -66,9 +195,9 @@
                 </mat-card-footer>
             </mat-card>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->
     <!-- AQI Forecast card -->
-    <mat-grid-list cols="7" rowHeight="350px">
+    <!-- <mat-grid-list cols="7" rowHeight="350px">
         <mat-grid-tile [colspan]="7" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>
@@ -93,9 +222,9 @@
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->
     <!-- Weahter card -->
-    <mat-grid-list cols="4" rowHeight="400">
+    <!-- <mat-grid-list cols="4" rowHeight="400">
         <mat-grid-tile [colspan]="4" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>
@@ -167,9 +296,9 @@
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->
     <!-- Weahter Forecast card -->
-    <mat-grid-list cols="7" rowHeight="450px">
+    <!-- <mat-grid-list cols="7" rowHeight="450px">
         <mat-grid-list cols="7" rowHeight="450px">
             <mat-grid-tile [colspan]="7" [rowspan]="1">
                 <mat-card class="dashboard-card ">
@@ -196,5 +325,5 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
-    </mat-grid-list>
+    </mat-grid-list> -->
 </div>
