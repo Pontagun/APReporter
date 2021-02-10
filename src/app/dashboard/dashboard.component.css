@@ -297,10 +297,10 @@ div.b {
     padding: 0.5em;
 }
 
-.custom-group-btn button { 
+.custom-group-btn button {
     height: 48px;
-    border-left: 1px solid rgba(0,0,0,.12);
-    border-right: 1px solid rgba(0,0,0,.12);
+    border-left: 1px solid rgba(0, 0, 0, .12);
+    border-right: 1px solid rgba(0, 0, 0, .12);
     padding: 0.5em 1em
 }
 
@@ -319,7 +319,7 @@ div.b {
 
 .custom-card .subheader-text {
     font-size: 1.25em;
-    font-weight: 500;;
+    font-weight: 500;
 }
 
 .status-text {
@@ -328,7 +328,7 @@ div.b {
     margin-left: 10px;
 }
 
-.eq-height > [class*='col-'] {
+.eq-height>[class*='col-'] {
     display: flex;
     flex-direction: column;
 }
@@ -347,10 +347,11 @@ div.b {
 .gas-label {
     font-size: 1.25em;
     font-weight: bold;
+    color: black;
 }
 
 .custom-gray-circle .normal-label {
-    font-size:14px;
+    font-size: 14px;
     font-weight: normal;
 }
 
@@ -370,7 +371,7 @@ div.b {
     width: 90%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 .temp-text {

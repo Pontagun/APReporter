@@ -78,19 +78,41 @@ export class HomeComponent {
           case 1:
             {
               this.currentAQI = this.aresult["us_aqi"]
-              this.setAQIcardColor(parseInt(this.currentAQI))
+              // this.setAQIcardColor(parseInt(this.currentAQI))
+              this.airTiles = [
+                {
+                  day: new Date().getDate().toString()
+                  , month: this.monthNames[(new Date()).getMonth()]
+                  , year: new Date().getDate().toString()
+                  , value: "ไม่มีข้อมูลพยากรณ์จากแหล่งข้อมูลนี้",
+                  cols: 1,
+                  rows: 1,
+                  color: 'lightblue'
+                }
+              ]
               break;
             }
           case 2:
             {
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
-              this.setAQIcardColor(parseInt(this.currentAQI))
+              // this.setAQIcardColor(parseInt(this.currentAQI))
+              this.airTiles = [
+                {
+                  day: new Date().getDate().toString()
+                  , month: this.monthNames[(new Date()).getMonth()]
+                  , year: new Date().getDate().toString()
+                  , value: "ไม่มีข้อมูลพยากรณ์จากแหล่งข้อมูลน้ี",
+                  cols: 1,
+                  rows: 1,
+                  color: 'lightblue'
+                }
+              ]
               break;
             }
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
-              this.setAQIcardColor(parseInt(this.currentAQI))
+              // this.setAQIcardColor(parseInt(this.currentAQI))
               this.airTiles = [
                 {
                   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
@@ -150,6 +172,17 @@ export class HomeComponent {
             {
               this.currentAQI = this.aresult["AQI"]
               this.setAQIcardColor(parseInt(this.currentAQI))
+              this.airTiles = [
+                {
+                  day: new Date().getDate().toString()
+                  , month: this.monthNames[(new Date()).getMonth()]
+                  , year: new Date().getDate().toString()
+                  , value: "ไม่มีข้อมูลพยากรณ์จากแหล่งข้อมูลนี้",
+                  cols: 1,
+                  rows: 1,
+                  color: 'lightblue'
+                }
+              ]
               break;
             }
         }
@@ -164,6 +197,10 @@ export class HomeComponent {
       this.sky = res["current"]["weather"][0]["description"]
       this.humidity = res["current"]["humidity"]
       this.rain = res["daily"][0]["rain"]
+      if (this.rain == undefined) {
+        this.rain = "0"
+      }
+
       this.pressure = res["current"]["pressure"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       this.temp = (res["current"]["temp"] - 273.15).toFixed(2).toString()
       this.rain_pop = res["daily"][0]["pop"]
