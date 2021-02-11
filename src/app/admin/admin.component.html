@@ -9,11 +9,11 @@
     </div>
     <mat-grid-list cols="4" rowHeight="700">
         <mat-grid-tile [colspan]="4" [rowspan]="1">
-            <mat-card class="dashboard-card">
+            <mat-card class="dashboard-card" >
                 <mat-card-content class="dashboard-card-content">
-                    <mat-grid-list cols="4">
-                        <mat-grid-tile [colspan]="3" [rowspan]="2">
-                            <mat-card class="dashboard-card">
+                    <mat-grid-list cols="4" (window:resize)="onResize($event)">
+                        <mat-grid-tile [colspan]="breakpoint" [rowspan]="2">
+                            <mat-card class="dashboard-card" style="overflow-y:auto; padding-bottom: 2em;">
                                 <mat-card-header>
                                     <h2>Health Reccomendation</h2>
                                 </mat-card-header>
@@ -52,19 +52,19 @@
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
-                        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-grid-tile [colspan]="breakpoint2" [rowspan]="1">
                             <mat-card class="dashboard-card">
                                 <mat-card-content class="btn-center">
-                                    <div style="padding-top: 45%;">
+                                    <div class='abs-btn'>
                                         <a mat-raised-button color="primary" href="{{wikiURL}}" target="_blank">Content Mangement</a>
                                     </div>
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
-                        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-grid-tile [colspan]="breakpoint2" [rowspan]="1">
                             <mat-card class="dashboard-card">
                                 <mat-card-content class="btn-center">
-                                    <div style="padding-top: 45%;">
+                                    <div class='abs-btn'>
                                         <button mat-raised-button color="primary">History Data</button>
                                     </div>
                                 </mat-card-content>
