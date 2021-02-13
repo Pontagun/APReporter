@@ -18,6 +18,8 @@ export class AdminComponent implements OnInit {
   blu_rec: String
   wikiURL: String
   myTextarea
+  breakpoint = 3;
+  breakpoint2 = 1;
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit(): void {
@@ -30,9 +32,12 @@ export class AdminComponent implements OnInit {
       this.blu_rec = res[4]["Detail"]
       this.wikiURL = this.widgetService.wikiURL
     },
-      error => {
-        console.log('data error !');
-      });
+    error => {
+      console.log('data error !');
+    });
+
+    this.breakpoint = (window.innerWidth <= 920) ? 4 : 3;
+    this.breakpoint2 = (window.innerWidth <= 920) ? 2 : 1;
   }
 
   onSubmit(form: NgForm) {
@@ -50,5 +55,10 @@ export class AdminComponent implements OnInit {
           console.log('data error !');
         });
 
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 920) ? 4 : 3;
+    this.breakpoint2 = (event.target.innerWidth <= 920) ? 2 : 1;
   }
 }

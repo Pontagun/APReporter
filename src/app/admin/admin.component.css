@@ -196,3 +196,10 @@ div.b {
 table {
     width: 100%;
 }
+
+.abs-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
