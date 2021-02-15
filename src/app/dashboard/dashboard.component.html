@@ -14,6 +14,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="btn-group custom-group-btn" role="group">
+                                <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(4)" class="btn">AQICN</button>
                                 <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(3)" class="btn">AQICN</button>
                                 <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(1)" class="btn">CMAQI</button>
                                 <button type="button" [ngClass]="currentCardBodyColor" (click)="OnClickSource(2)" class="btn">IQAir</button>
@@ -30,8 +31,8 @@
                     </div>
                 </div>
                 <div class="p-2">
-                    <div>
-                        <div class="status-text" [ngClass]="currentCardFooterColor">{{currentLevel}}</div>
+                    <div class="status-text" [ngClass]="currentCardFooterColor">
+                        <a href="https://airkm-admin.datascience.cmu.ac.th/en/AQI" target="_blank" rel="noopener noreferrer">{{currentLevel}}</a>
                     </div>
                     <div class="text-left">
                         {{currentDescribtion}}
@@ -45,7 +46,7 @@
                     <div>ค่ามลพิษในอากาศ</div>
                 </div>
                 <div class="sub-header-text" style="font-style: italic;">
-                    *ค่าจาก AQICN
+                    *อ้างอิงค่ามลพิษจาก air4thai.pcd.go.th
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4">
@@ -57,7 +58,7 @@
                                 <div class="normal-label">ไนโตรเจนไดออกไซด์</div>
                                 <div class="gas-label">{{no2}}</div>
                                 <div class="normal-label">ppb</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4">
@@ -69,7 +70,7 @@
                                 <div class="normal-label">ซัลเฟอร์ไดออกไซด์</div>
                                 <div class="gas-label">{{so2}}</div>
                                 <div class="normal-label">ppb</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 mt-2 mt-md-0">
@@ -81,7 +82,7 @@
                                 <div class="normal-label">โอโซน</div>
                                 <div class="gas-label">{{o3}}</div>
                                 <div class="normal-label">ppb</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 mt-2">
@@ -93,7 +94,7 @@
                                 <div class="normal-label">คาร์บอนมอนออกไซด์</div>
                                 <div class="gas-label">{{co}}</div>
                                 <div class="normal-label">ppm</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 mt-2">
@@ -105,7 +106,7 @@
                                 <div class="normal-label">ฝุ่นขนาดไม่เกิน 10 ไมครอน</div>
                                 <div class="gas-label">{{pm10}}</div>
                                 <div class="normal-label">ug/m3</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 mt-2">
@@ -117,7 +118,7 @@
                                 <div class="normal-label">ฝุ่นขนาดไม่เกิน 2.5 ไมครอน</div>
                                 <div class="gas-label">{{pm25}}</div>
                                 <div class="normal-label">ug/m3</div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +138,7 @@
                     <div class="col-12 col-md-4 text-center">
                         <div class="header-text pt-1">อุณหภูมิ</div>
                         <div class="temp-text green-font">{{temp}}</div>
-                        <div>องศาเซลเซียส (C)</div>    
+                        <div>องศาเซลเซียส (C)</div>
                         <div class="mt-2">สูงสุด</div>
                         <div class="red-text-no-margin-btm subheader-text mt-1">{{maxTemp}}</div>
                         <div class="mt-2">ต่ำสุด</div>
@@ -200,8 +201,8 @@
                 </mat-card-footer>
             </mat-card>
         </mat-grid-tile> -->
-        <!-- Compound Card-->
-        <!-- <mat-grid-tile [colspan]="6" [rowspan]="1">
+    <!-- Compound Card-->
+    <!-- <mat-grid-tile [colspan]="6" [rowspan]="1">
             <mat-card class="dashboard-card">
                 <mat-card-header>
                     <mat-card-title>

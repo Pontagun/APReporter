@@ -53,7 +53,12 @@ export class DashboardComponent {
     { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
-  no2: string; so2: string; o3: string; co: string; pm10: string; pm25: string;
+  no2: string = "รับข้อมูล";
+  so2: string = "รับข้อมูล";
+  o3: string = "รับข้อมูล";
+  co: string = "รับข้อมูล";
+  pm10: string = "รับข้อมูล";
+  pm25: string = "รับข้อมูล";
   constructor(private breakpointObserver: BreakpointObserver,
     private widgetService: WidgetService,
     private http: HttpClient) {
@@ -66,12 +71,12 @@ export class DashboardComponent {
     this.widgetService.getAirIndex(lat, lng, index)
       .subscribe(res => {
         this.aresult = res
-        this.no2 = "-"
-              this.so2 = "-"
-              this.co = "-"
-              this.o3 = "-"
-              this.pm10 = "-"
-              this.pm25 = "-"
+        // this.no2 = "-"
+        // this.so2 = "-"
+        // this.co = "-"
+        // this.o3 = "-"
+        // this.pm10 = "-"
+        // this.pm25 = "-"
         switch (index) {
           case 1:
             {
@@ -88,24 +93,24 @@ export class DashboardComponent {
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
-              this.no2 = "-"
-              this.so2 = "-"
-              this.co = "-"
-              this.o3 = this.aresult["data"]["forecast"]["daily"]["o3"][2]["avg"]
-              this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
-              this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
+              // this.no2 = "-"
+              // this.so2 = "-"
+              // this.co = "-"
+              // this.o3 = this.aresult["data"]["forecast"]["daily"]["o3"][2]["avg"]
+              // this.pm10 = this.aresult["data"]["iaqi"]["pm10"]["v"]
+              // this.pm25 = this.aresult["data"]["iaqi"]["pm25"]["v"]
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
           case 4:
             {
-              this.currentAQI = this.aresult["AQI"]
-              this.no2 = this.aresult["NO2"]
-              this.so2 = this.aresult["SO2"]
-              this.co = this.aresult["CO"]
-              this.o3 = this.aresult["O3"]
-              this.pm10 = this.aresult["PM10"]
-              this.pm25 = this.aresult["PM25"]
+              this.currentAQI = (this.aresult["AQI"] === null) ? "ไม่มีข้อมูล" : this.aresult["AQI"];
+              this.no2 = (this.aresult["NO2"] === null) ? "ไม่มีข้อมูล" : this.aresult["NO2"];
+              this.so2 = (this.aresult["SO2"] === null) ? "ไม่มีข้อมูล" : this.aresult["SO2"];
+              this.co = (this.aresult["CO"] === null) ? "ไม่มีข้อมูล" : this.aresult["CO"];
+              this.o3 = (this.aresult["O3"] === null) ? "ไม่มีข้อมูล" : this.aresult["O3"];
+              this.pm10 = (this.aresult["PM10"] === null) ? "ไม่มีข้อมูล" : this.aresult["PM10"];
+              this.pm25 = (this.aresult["PM25"] === null) ? "ไม่มีข้อมูล" : this.aresult["PM25"];
               this.setAQIcardColor(parseInt(this.currentAQI))
               break;
             }
@@ -122,6 +127,7 @@ export class DashboardComponent {
       this.sky = res["current"]["weather"][0]["description"]
       this.humidity = res["current"]["humidity"]
       this.rain = res["daily"][0]["rain"]
+      if (this.rain == undefined) { this.rain = "0" }
       this.pressure = res["current"]["pressure"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       this.temp = (res["current"]["temp"] - 273.15).toFixed(2).toString()
       this.rain_pop = res["daily"][0]["pop"]
