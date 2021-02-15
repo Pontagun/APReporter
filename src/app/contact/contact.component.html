@@ -8,7 +8,7 @@
         <h1>ติดต่อผู้เชี่ยวชาญ</h1>
     </div>
     <div class="bg-ivory">
-        <mat-grid-list cols="4" rowHeight="220">
+        <mat-grid-list [cols]="breakpoint" rowHeight="230" (window:resize)="onResize($event)">
             <mat-grid-tile *ngFor="let person of people" [colspan]="1" [rowspan]="1">
                 <mat-card class="dashboard-card">
                     <mat-card-content>

@@ -18,16 +18,24 @@ export class ContactComponent implements OnInit {
 
   people: Specialist[] = [];
   wikiLink = this.widgetService.wikiURL
+  public breakpoint = 4;
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit() {
     this.widgetService.getSpecialist()
-      .subscribe(res => {
-        this.people = res
-      },
-        error => {
-          console.log('data error !');
-        });
+    .subscribe(res => {
+      this.people = res
+    },
+    error => {
+      console.log('data error !');
+    });
+
+    this.breakpoint = (window.innerWidth <= 420) ? 1 : 4;
+
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 420) ? 1 : 4;
   }
 
 

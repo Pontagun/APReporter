@@ -78,7 +78,7 @@ export class HomeComponent {
           case 1:
             {
               this.currentAQI = this.aresult["us_aqi"]
-              // this.setAQIcardColor(parseInt(this.currentAQI))
+              this.setAQIcardColor(parseInt(this.currentAQI))
               this.airTiles = [
                 {
                   day: new Date().getDate().toString()
@@ -95,7 +95,7 @@ export class HomeComponent {
           case 2:
             {
               this.currentAQI = this.aresult["data"]["current"]["pollution"]["aqius"]
-              // this.setAQIcardColor(parseInt(this.currentAQI))
+              this.setAQIcardColor(parseInt(this.currentAQI))
               this.airTiles = [
                 {
                   day: new Date().getDate().toString()
@@ -112,7 +112,7 @@ export class HomeComponent {
           case 3:
             {
               this.currentAQI = this.aresult["data"]["aqi"]
-              // this.setAQIcardColor(parseInt(this.currentAQI))
+              this.setAQIcardColor(parseInt(this.currentAQI))
               this.airTiles = [
                 {
                   day: (new Date(this.aresult["data"]["forecast"]["daily"]["pm25"][2]["day"])).getDate().toString()
