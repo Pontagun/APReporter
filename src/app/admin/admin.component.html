@@ -7,11 +7,11 @@
     <div class="">
         <h1>การตั้งค่า</h1>
     </div>
-    <mat-grid-list cols="4" rowHeight="700">
+    <mat-grid-list cols="4" rowHeight="710">
         <mat-grid-tile [colspan]="4" [rowspan]="1">
             <mat-card class="dashboard-card" >
                 <mat-card-content class="dashboard-card-content">
-                    <mat-grid-list cols="4" (window:resize)="onResize($event)">
+                    <mat-grid-list cols="4" (window:resize)="onResize($event)" [rowHeight]="rowHeight">
                         <mat-grid-tile [colspan]="breakpoint" [rowspan]="2">
                             <mat-card class="dashboard-card" style="overflow-y:auto; padding-bottom: 2em;">
                                 <mat-card-header>

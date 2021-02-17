@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   myTextarea
   breakpoint = 3;
   breakpoint2 = 1;
+  rowHeight = 330;
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit(): void {
@@ -37,7 +38,8 @@ export class AdminComponent implements OnInit {
     });
 
     this.breakpoint = (window.innerWidth <= 920) ? 4 : 3;
-    this.breakpoint2 = (window.innerWidth <= 920) ? 2 : 1;
+    this.breakpoint2 = (window.innerWidth <= 500) ? 4 : (window.innerWidth <= 920) ? 2 : 1;
+    this.rowHeight = (window.innerWidth <= 500) ? 170 : (window.innerWidth <= 920) ? 220 :  330;
   }
 
   onSubmit(form: NgForm) {
@@ -59,6 +61,7 @@ export class AdminComponent implements OnInit {
 
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 920) ? 4 : 3;
-    this.breakpoint2 = (event.target.innerWidth <= 920) ? 2 : 1;
+    this.breakpoint2 = (event.target.innerWidth <= 500) ? 4 : (event.target.innerWidth <= 920) ? 2 : 1;
+    this.rowHeight = (window.innerWidth <= 920) ? 170 : 330;
   }
 }
