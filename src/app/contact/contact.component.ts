@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
 
   people: Specialist[] = [];
   wikiLink = this.widgetService.wikiURL
-  public breakpoint = 4;
+  public breakpoint = 3;
   constructor(private widgetService: WidgetService,) { }
 
   ngOnInit() {
@@ -30,12 +30,12 @@ export class ContactComponent implements OnInit {
       console.log('data error !');
     });
 
-    this.breakpoint = (window.innerWidth <= 420) ? 1 : 4;
+    this.breakpoint = (window.innerWidth <= 420) ? 1 : (window.innerWidth <= 700) ? 2 : (window.innerWidth <= 1024) ? 3 : 4;
 
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 420) ? 1 : 4;
+    this.breakpoint = (event.target.innerWidth <= 420) ? 1 : (event.target.innerWidth <= 700) ? 2 : (event.target.innerWidth <= 1024) ? 3 : 4;
   }
 
 
