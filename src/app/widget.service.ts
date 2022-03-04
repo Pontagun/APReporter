@@ -65,8 +65,12 @@ export class WidgetService {
       navigator.geolocation.getCurrentPosition(resp => {
         resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
       },
-        err => {
-          reject(err);
+        () => {
+          console.log(`User doesn't allow the location service. Using Chiang Mai as default location.`)
+          resolve({
+            lng: 98.979263,
+            lat: 18.796143
+          })
         });
     });
   }
