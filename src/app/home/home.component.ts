@@ -33,7 +33,7 @@ export class HomeComponent {
   currentCardFooterColor = ''
   currentRec = ''
 
-  defautIndex = 4;
+  defautIndex = 3;
 
   healthRecommends: any = []
 

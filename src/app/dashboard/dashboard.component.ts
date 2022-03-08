@@ -46,7 +46,7 @@ export class DashboardComponent {
   rain_pop = ""
   minTemp = ""
   maxTemp = ""
-  defautIndex = 4;
+  defautIndex = 3;
   tiles: Tile[] = [
     { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
     { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
@@ -137,9 +137,9 @@ export class DashboardComponent {
       });
   }
 
-  OnClickSource(sorceName: any) {
+  OnClickSource(sourceName: any) {
     this.widgetService.getPosition().then(pos => {
-      this.home(pos.lat, pos.lng, sorceName)
+      this.home(pos.lat, pos.lng, sourceName)
     });
   }
 

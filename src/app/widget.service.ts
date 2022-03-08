@@ -41,7 +41,7 @@ export class WidgetService {
       }
       case 2: {
         // IQAir
-        this.airURL = this.url + "/iqair?lat=" + lat + "&lon=" + lng
+        this.airURL = "https://airkm-backend.docker.titipat.net/api/iqair?lat=" + lat + "&lon=" + lng
         break
       }
       case 3: {
